@@ -230,6 +230,36 @@ async def learn_consent2(update: Update, context):
 async def learn_consent3(update: Update, context):
     text = (
         "🤝 *Consent* 🤝\n\n"
+        "When you’re engaging in sexual activity, consent communication should happen *every* time for *every* type of activity. Consenting to one activity, at one time does not mean someone gives consent for other activities or for the same activity on other occasions (eg, kissing someone doesn’t give them permission to remove your clothes)\n\n"
+    )
+    keyboard = [
+        next_button('learn_consent4'),
+        back_button('learn_consent2'),
+        [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]
+        
+        ]
+    
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
+
+async def learn_consent4(update: Update, context):
+    text = (
+        "🤝 *Consent* 🤝\n\n"
+        "When you’re engaging in sexual activity, consent communication should happen *every* time for *every* type of activity. Consenting to one activity, at one time does not mean someone gives consent for other activities or for the same activity on other occasions (eg, kissing someone doesn’t give them permission to remove your clothes)\n\n"
+    )
+    keyboard = [
+        next_button('learn_consent4'),
+        back_button('learn_consent2'),
+        [InlineKeyboardButton("Main menu 🏠", callback_data='learn_and_volunteer')]
+        
+        ]
+    
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
+
+async def learn_consent4(update: Update, context):
+    text = (
+        "🤝 *Consent* 🤝\n\n"
         "Our bodily pleasure during sexual intercourse does not naturally equate to consent by the victim. Physiological responses like an erection, "
         "lubrication, arousal, or orgasm are involuntary, meaning your body might react one way even when you are not consenting to the activity.\n\n" 
         "Read more [here](https://www.instagram.com/p/CfaZQaOB8JU/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)\n"
@@ -238,7 +268,7 @@ async def learn_consent3(update: Update, context):
     keyboard = [
         next_button('learn_consent4'),
         back_button('learn_consent2'),
-        [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]
+        [InlineKeyboardButton("Main menu 🏠", callback_data='learn_and_volunteer')]
         
         ]
     
