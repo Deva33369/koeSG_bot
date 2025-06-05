@@ -1,5 +1,5 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from handlers.utils import back_button
+from handlers.utils import back_button, next_button
 
 async def learn(update: Update, context):
     text = (
@@ -30,7 +30,7 @@ async def learn_tips(update: Update, context):
 
     keyboard = [
         next_button('learn_tips2'),
-        back_button('learn_and_volunteer')
+        back_button('learn')
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
@@ -48,7 +48,7 @@ async def learn_tips2(update: Update, context):
     keyboard = [
         next_button('learn_tips3'),
         back_button('learn_tips'),
-        [InlineKeyboardButton("Main menu 🏠", callback_data='learn_and_volunteer')]   
+        [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]   
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
@@ -67,7 +67,7 @@ async def learn_tips3(update: Update, context):
     keyboard = [
         next_button('learn_tips4'),
         back_button('learn_tips2'),
-        [InlineKeyboardButton("Main menu 🏠", callback_data='learn_and_volunteer')]   
+        [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]   
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
@@ -81,7 +81,7 @@ async def learn_tips4(update: Update, context):
 
     keyboard = [
         back_button('learn_tips3'),
-        [InlineKeyboardButton("Main menu 🏠", callback_data='learn_and_volunteer')]   
+        [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]   
    
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -93,7 +93,7 @@ async def volunteer(update: Update, context):
     )
     
     keyboard = [
-        back_button('learn_and_volunteer')
+        back_button('learn')
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
@@ -118,7 +118,7 @@ async def learn_sa(update: Update, context):
         [InlineKeyboardButton("What is Sexual Grooming?", callback_data='learn_sexual_grooming')],
         [InlineKeyboardButton("What is Consent?", callback_data='learn_consent')],
         [InlineKeyboardButton("About Victim Blaming & Rape Myths", callback_data='learn_victim_blaming')],
-        back_button('learn_and_volunteer')
+        back_button('learn')
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.callback_query.edit_message_text(trigger_warning + text, parse_mode='Markdown', reply_markup=reply_markup)
@@ -137,7 +137,7 @@ async def learn_sexual_assault(update: Update, context):
    
     keyboard = [
         back_button('learn_sa'),
-        [InlineKeyboardButton("Main menu 🏠", callback_data='learn_and_volunteer')]
+        [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]
         
         ]
 
@@ -152,7 +152,7 @@ async def learn_sexual_grooming(update: Update, context):
     keyboard = [
         next_button('learn_sexual_grooming2'),
         back_button('learn_sa'),
-        [InlineKeyboardButton("Main menu 🏠", callback_data='learn_and_volunteer')]
+        [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]
         
         ]
     
@@ -171,7 +171,7 @@ async def learn_sexual_grooming2(update: Update, context):
     keyboard = [
         next_button('learn_sexual_grooming3'),
         back_button('learn_sexual_grooming'),
-        [InlineKeyboardButton("Main menu 🏠", callback_data='learn_and_volunteer')]
+        [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]
         
         ]
     
@@ -186,7 +186,7 @@ async def learn_sexual_grooming3(update: Update, context):
     )
     keyboard = [
         back_button('learn_sexual_grooming2'),
-        [InlineKeyboardButton("Main menu 🏠", callback_data='learn_and_volunteer')]
+        [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]
         
         ]
     
@@ -203,7 +203,7 @@ async def learn_consent(update: Update, context):
     keyboard = [
         next_button('learn_consent2'),
         back_button('learn_sa'),
-        [InlineKeyboardButton("Main menu 🏠", callback_data='learn_and_volunteer')]
+        [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]
         
         ]
     
@@ -218,7 +218,7 @@ async def learn_consent2(update: Update, context):
     keyboard = [
         next_button('learn_consent3'),
         back_button('learn_consent'),
-        [InlineKeyboardButton("Main menu 🏠", callback_data='learn_and_volunteer')]
+        [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]
         
         ]
     
@@ -238,7 +238,7 @@ async def learn_consent3(update: Update, context):
     keyboard = [
         next_button('learn_consent4'),
         back_button('learn_consent2'),
-        [InlineKeyboardButton("Main menu 🏠", callback_data='learn_and_volunteer')]
+        [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]
         
         ]
     
@@ -257,7 +257,7 @@ async def learn_consent4(update: Update, context):
         "Read more about [enthusiastic consent](https://www.instagram.com/p/CihJKZuBRZ9/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)")
     keyboard = [
         back_button('learn_consent3'),
-        [InlineKeyboardButton("Main menu 🏠", callback_data='learn_and_volunteer')]
+        [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]
         
         ]
     
@@ -272,7 +272,7 @@ async def learn_victim_blaming(update: Update, context):
         "Victim blaming is common among rape or sexual assault cases, where the victim is accused of inviting the perpetration due to either their clothing or behaviour.")
     keyboard = [
         next_button('learn_victim_blaming2'),
-        [InlineKeyboardButton("Main menu 🏠", callback_data='learn_and_volunteer')]
+        [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]
         
         ]
     
@@ -292,7 +292,7 @@ async def learn_victim_blaming2(update: Update, context):
     )
     keyboard = [
         back_button('learn_sa'),
-        [InlineKeyboardButton("Main menu 🏠", callback_data='learn_and_volunteer')]
+        [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
@@ -310,7 +310,7 @@ async def learn_rape_myths(update: Update, context):
     )
     keyboard = [
         back_button('learn_victim_blaming2'),
-        [InlineKeyboardButton("Main menu 🏠", callback_data='learn_and_volunteer')]
+        [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
