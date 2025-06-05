@@ -10,7 +10,7 @@ from handlers.care_handler import (
     care_journaling_prompts, care_grounding, care_letters, care_younger_self
 )
 from handlers.learn_handler import learn
-from handlers.feedback_handler import feedback
+from handlers.feedback_handler import feedback, handle_feedback
 
 async def myid(update: Update, context):
     """Command handler to show the user's Telegram ID"""
@@ -78,8 +78,9 @@ def main():
     application.add_handler(CallbackQueryHandler(care_letters, pattern='^care_letters$'))
     application.add_handler(CallbackQueryHandler(care_younger_self, pattern='^care_younger_self$'))
     
-    # Story submission handler
+    # Message handlers for story and feedback submissions
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_story))
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_feedback))
     
     print('Bot is running...')
     application.run_polling()
