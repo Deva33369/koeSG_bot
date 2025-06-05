@@ -1,5 +1,5 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from handlers.utils import back_button, next_button
+from handlers.utils import back_button
 
 async def learn(update: Update, context):
     text = (
