@@ -4,7 +4,7 @@ from config import TOKEN, ADMIN_ID
 from handlers.start_handler import start
 from handlers.community_handler import community
 from handlers.help_handler import help, emergency_police, emergency_sos, helplines
-from handlers.support_handler import support
+from handlers.support_handler import support, support_counselling, support_legal
 from handlers.care_handler import (
     care, care_story, care_support_groups, care_tips, care_journaling,
     care_journaling_prompts, care_grounding, care_letters, care_younger_self
@@ -49,6 +49,13 @@ async def handle_story(update: Update, context):
             )
         context.user_data['expecting_story'] = False
 
+async def handle_message(update: Update, context):
+    """Handle both story and feedback submissions based on user state"""
+    if context.user_data.get('expecting_story'):
+        await handle_story(update, context)
+    elif context.user_data.get('expecting_feedback'):
+        await handle_feedback(update, context)
+
 def main():
     application = Application.builder().token(TOKEN).build()
     
@@ -68,6 +75,10 @@ def main():
     application.add_handler(CallbackQueryHandler(emergency_sos, pattern='^emergency_sos$'))
     application.add_handler(CallbackQueryHandler(helplines, pattern='^helplines$'))
     
+    # Support menu handlers
+    application.add_handler(CallbackQueryHandler(support_counselling, pattern='^support_counselling$'))
+    application.add_handler(CallbackQueryHandler(support_legal, pattern='^support_legal$'))
+    
     # Care menu handlers
     application.add_handler(CallbackQueryHandler(care_story, pattern='^care_story$'))
     application.add_handler(CallbackQueryHandler(care_support_groups, pattern='^care_support_groups$'))
@@ -78,9 +89,8 @@ def main():
     application.add_handler(CallbackQueryHandler(care_letters, pattern='^care_letters$'))
     application.add_handler(CallbackQueryHandler(care_younger_self, pattern='^care_younger_self$'))
     
-    # Message handlers for story and feedback submissions
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_story))
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_feedback))
+    # Message handler for both story and feedback submissions
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
     
     print('Bot is running...')
     application.run_polling()
