@@ -3,7 +3,7 @@ from handlers.utils import back_button
 
 async def learn(update: Update, context):
     text = (
-        "📢 *Learn & Volunteer* 📢\n\n"
+        "📢 <b>Learn & Volunteer</b> 📢\n\n"
         "**Educational Guides**:\n"
         "- [Understanding Consent](https://example.com/consent)\n"
         "- [How to Support Survivors](https://example.com/support-guide)\n\n"

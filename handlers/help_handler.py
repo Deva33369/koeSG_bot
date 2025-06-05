@@ -20,7 +20,7 @@ async def help(update: Update, context):
 
 async def emergency_police(update: Update, context):
     text = (
-        "🚔 *Emergency Police Contact* 🚔\n\n"
+        "🚔 <b>Emergency Police Contact</b> 🚔\n\n"
         "Please call <code>999</code> immediately for police assistance.\n\n"
         "If you are in immediate danger, please:\n"
         "1. Find a safe place if possible\n"
@@ -35,7 +35,7 @@ async def emergency_police(update: Update, context):
 
 async def emergency_sos(update: Update, context):
     text = (
-        "🆘 *Emergency SOS Contact* 🆘\n\n"
+        "🆘 <b>Emergency SOS Contact</b> 🆘\n\n"
         "Please call <code>18002214444</code> immediately.\n\n"
         "If you are having thoughts of hurting yourself or others:\n"
         "1. Call SOS now\n"
@@ -50,35 +50,35 @@ async def emergency_sos(update: Update, context):
 
 async def helplines(update: Update, context):
     text = (
-        "📞 *Helplines & Support Services* 📞\n\n"
+        "📞 <b>Helplines & Support Services</b> 📞\n\n"
         "Hello! Thank you for reaching out! KOE hopes to support you in any way possible. "
         "Below are some helplines you could reach out to depending on your needs and preference.\n\n"
-        "*For Sexual Assault Related Matters (All Genders):*\n"
-        "• *AWARE*\n"
+        "<b>For Sexual Assault Related Matters (All Genders):</b>\n"
+        "• <b><a href='https://www.aware.org.sg'>AWARE</a></b>\n"
         "  - Call: <code>67790282</code> (Mon-Fri, 10am-6pm)\n"
         "  - Online chat via Zoom (Mon-Fri, 10am-4:30pm)\n"
         "  - Email: sacc@aware.org.sg\n\n"
-        "• *Care Corner*\n"
+        "• <b><a href='https://www.carecorner.org.sg'>Care Corner</a></b>\n"
         "  - Call: <code>64761482</code>\n"
         "  - Email: projectstart@carecorner.org.sg\n\n"
-        "*For Workplace Harassment/Discrimination:*\n"
-        "• *AWARE*\n"
+        "<b>For Workplace Harassment/Discrimination:</b>\n"
+        "• <b><a href='https://www.aware.org.sg'>AWARE</a></b>\n"
         "  - Call: <code>69509191</code> (Mon-Fri, 10am-6pm)\n\n"
-        "*For Sex Workers:*\n"
-        "• *Project X*\n"
+        "<b>For Sex Workers:</b>\n"
+        "• <b><a href='https://projectx.org.sg'>Project X</a></b>\n"
         "  - Call: <code>90609906</code> (3pm-11:30pm)\n\n"
-        "*For Primary School Children:*\n"
-        "• *Tinkle Friend*\n"
+        "<b>For Primary School Children:</b>\n"
+        "• <b><a href='https://www.tinklefriend.sg'>Tinkle Friend</a></b>\n"
         "  - Call: <code>18002744788</code>\n\n"
-        "*For LGBTQ+ Support:*\n"
-        "• *Oogachaga*\n"
+        "<b>For LGBTQ+ Support:</b>\n"
+        "• <b><a href='https://www.oogachaga.com'>Oogachaga</a></b>\n"
         "  - WhatsApp: <code>85920609</code> (Tue & Thu: 7pm-10pm; Sat: 2pm-5pm)\n"
         "  - Email: CARE@oogachaga.com\n\n"
-        "*For Online Sexual Harassment/Abuse:*\n"
-        "• *SCWO* (Women-specific, 9am-9pm)\n"
+        "<b>For Online Sexual Harassment/Abuse:</b>\n"
+        "• <b><a href='https://www.scwo.org.sg'>SCWO</a></b> (Women-specific, 9am-9pm)\n"
         "  - Call: <code>8001014616</code>\n"
         "  - WhatsApp: <code>65714400</code>\n\n"
-        "For more resources, visit Solid Ground."
+        "For more resources regarding <b>online sexual harassment/abuse</b>, visit <b><a href='https://www.solidground.sg'>Solid Ground</a></b>."
     )
     keyboard = [back_button('help')]
     reply_markup = InlineKeyboardMarkup(keyboard)
