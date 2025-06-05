@@ -1,5 +1,6 @@
 from telegram import Update
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters
+from telegram.error import TelegramError
 from config import TOKEN
 from handlers.start_handler import start
 from handlers.community_handler import community
@@ -12,12 +13,26 @@ from handlers.care_handler import (
 from handlers.learn_and_volunteer_handler import (
     learn_and_volunteer, learn_tips, learn_tips2, learn_tips3, learn_tips4,
     volunteer, learn_sa, learn_sexual_assault, learn_sexual_grooming, learn_sexual_grooming2, learn_sexual_grooming3,
-    learn_consent, learn_consent2, learn_consent3, learn_consent4, learn_victim_blaming, learn_victim_blaming2,
+    learn_consent, learn_consent2, learn_consent3, learn_victim_blaming, learn_victim_blaming2,
     learn_rape_myths
 )
 
 from handlers.learn_and_volunteer_handler import learn_and_volunteer
 from handlers.feedback_handler import feedback
+
+async def check_channel_access(bot):
+    """Check if bot has access to channel"""
+    try:
+        channel_id = "@KOECO"
+        await bot.get_chat(channel_id)
+        print(f"Successfully connected to channel {channel_id}")
+    except TelegramError as e:
+        print(f"Error accessing channel: {e}")
+        print("Please ensure bot is admin of @KOECO channel")
+
+async def post_init(application: Application):
+    """Called after bot initialization"""
+    await check_channel_access(application.bot)
 
 async def handle_story(update: Update, context):
     if context.user_data.get('expecting_story'):
@@ -26,8 +41,9 @@ async def handle_story(update: Update, context):
         context.user_data['expecting_story'] = False
 
 def main():
-    application = Application.builder().token(TOKEN).build()
-    
+    application = Application.builder().token(TOKEN).post_init(post_init).build()
+
+
     # Main menu handlers
     application.add_handler(CommandHandler('start', start))
     application.add_handler(CallbackQueryHandler(start, pattern='^start$'))
@@ -62,7 +78,6 @@ def main():
     application.add_handler(CallbackQueryHandler(learn_consent, pattern="^learn_consent$"))
     application.add_handler(CallbackQueryHandler(learn_consent2, pattern="^learn_consent2$"))
     application.add_handler(CallbackQueryHandler(learn_consent3, pattern="^learn_consent3$"))
-    application.add_handler(CallbackQueryHandler(learn_consent4, pattern="^learn_consent4$"))
     application.add_handler(CallbackQueryHandler(learn_victim_blaming, pattern="^learn_victim_blaming$"))
     application.add_handler(CallbackQueryHandler(learn_victim_blaming2, pattern="^learn_victim_blaming2$"))
     application.add_handler(CallbackQueryHandler(learn_rape_myths, pattern="^learn_rape_myths$"))
