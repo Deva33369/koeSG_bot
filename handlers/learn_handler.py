@@ -39,7 +39,7 @@ async def learn_tips2(update: Update, context):
     text = (
         "🫂 *Supporting Survivors* 🫂\n\n"
         "*Reminders 💞:*\n\n"
-        "1. Sexual assault happens because of someone else’s decision to violate another person\n" 
+        "1. Sexual assault happens because of someone else's decision to violate another person\n" 
         "2. Many survivors suffer in silence because they fear being disbelieved or judged\n" 
         "3. Do not judge. Believe the survivor\n"
         "4. Your job is to not give advice. Your job is to be there and support their decisions\n\n"
@@ -55,14 +55,14 @@ async def learn_tips2(update: Update, context):
 
 async def learn_tips3(update: Update, context):
     text = (
-    "🫂 *Supporting Survivors* 🫂\n\n"
-    "*Tips:*\n\n"
-    "1. Do not blame the victim. Do not ask detailed questions if they are not comfortable sharing and do not ask questions you do not need to know (eg, what were you wearing? Why didn’t you leave? Why were you alone?) You are not an investigator, you are a friend trying to be there for them. Allow them to share how they feel. Allow them to react, and support them in processing what has happened.\n\n"
-    "2. Ensure their safety. If they are calling you immediately after it has happened, ensure they are away from the perpetrator and in a safe place. Check in with them on whether they would like to call the police or if they are physically hurt, to seek medical attention\n\n"
-    "3. Practise Active Listening. Use phrases such as “I hear you”, “do you want to share more?” “What were you feeling?\n\n"
-    "4. Empathise with them. Remind them that it was not their fault, that what they went through is traumatic and their feelings are valid. Remind them that you are here for them.\n\n" 
-    "5. Refer them to helplines, counselling or legal help. Offer to join them if they make a decision to report, or receive support as they could use a loved one there with them. "
-)
+        "🫂 *Supporting Survivors* 🫂\n\n"
+        "*Tips:*\n\n"
+        "1. Do not blame the victim. Do not ask detailed questions if they are not comfortable sharing and do not ask questions you do not need to know (eg, what were you wearing? Why didn't you leave? Why were you alone?) You are not an investigator, you are a friend trying to be there for them. Allow them to share how they feel. Allow them to react, and support them in processing what has happened.\n\n"
+        "2. Ensure their safety. If they are calling you immediately after it has happened, ensure they are away from the perpetrator and in a safe place. Check in with them on whether they would like to call the police or if they are physically hurt, to seek medical attention\n\n"
+        "3. Practise Active Listening. Use phrases such as \"I hear you\", \"do you want to share more?\" \"What were you feeling?\"\n\n"
+        "4. Empathise with them. Remind them that it was not their fault, that what they went through is traumatic and their feelings are valid. Remind them that you are here for them.\n\n" 
+        "5. Refer them to helplines, counselling or legal help. Offer to join them if they make a decision to report, or receive support as they could use a loved one there with them."
+    )
 
     keyboard = [
         next_button('learn_tips4'),
@@ -100,6 +100,12 @@ async def volunteer(update: Update, context):
 
 
 async def learn_sa(update: Update, context):
+    trigger_warning = (
+        "⚠️ *Content Warning* ⚠️\n\n"
+        "The following sections contain detailed information about sexual assault, "
+        "grooming, and related topics. This content may be triggering or distressing. "
+        "Please take care of yourself and proceed only if you feel ready.\n\n"
+    )
     text = (
         "💡 *Learning more* 💡\n\n"
         "Learning more about sexual assault and consent can be a great way to ensure we continue to teach ourselves and our loved ones the right thing!\n\n"
@@ -115,7 +121,7 @@ async def learn_sa(update: Update, context):
         back_button('learn_and_volunteer')
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
+    await update.callback_query.edit_message_text(trigger_warning + text, parse_mode='Markdown', reply_markup=reply_markup)
 
 
 async def learn_sexual_assault(update: Update, context):
@@ -175,9 +181,8 @@ async def learn_sexual_grooming2(update: Update, context):
 async def learn_sexual_grooming3(update: Update, context):
     text = (
         "🚫 *Sexual Grooming* 🚫\n\n"
-        "“Grooming can also happen in domestic and relationship settings where the abusive partner, over time, introduces abusive acts that you feel coerced into allowing. In these situations, consent is coerced and therefore is not consent.”\n\n"
+        "\"Grooming can also happen in domestic and relationship settings where the abusive partner, over time, introduces abusive acts that you feel coerced into allowing. In these situations, consent is coerced and therefore is not consent.\"\n\n"
         "Read more about [sexual grooming](https://www.instagram.com/p/C5K5s3Qh_vj/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==) or check out [our podcast with Dewy Choo](https://youtu.be/ARb7-qQ10qc?si=8Szp1yQFBVDujj1f)"
-
     )
     keyboard = [
         back_button('learn_sexual_grooming2'),
@@ -208,7 +213,7 @@ async def learn_consent(update: Update, context):
 async def learn_consent2(update: Update, context):
     text = (
         "🤝 *Consent* 🤝\n\n"
-        "When you’re engaging in sexual activity, consent communication should happen *every* time for *every* type of activity. Consenting to one activity, at one time does not mean someone gives consent for other activities or for the same activity on other occasions (eg, kissing someone doesn’t give them permission to remove your clothes)\n\n"
+        "When you're engaging in sexual activity, consent communication should happen *every* time for *every* type of activity. Consenting to one activity, at one time does not mean someone gives consent for other activities or for the same activity on other occasions (eg, kissing someone doesn't give them permission to remove your clothes)\n\n"
     )
     keyboard = [
         next_button('learn_consent3'),
@@ -276,37 +281,81 @@ async def learn_victim_blaming(update: Update, context):
 
 async def learn_victim_blaming2(update: Update, context):
     text = (
-        "❌ *Victim Blaming* ❌\n\n"
-        "Blaming the victim makes it more difficult for that person to come forward and report the assault. On a societal level, it means fewer crimes get reported and fewer predators get prosecuted.\n\n"
-        "Victim blaming can lead to increased and unnecessary suffering for the victims. They may experience ridicule while at the same time watching their predators avoid punishment instead of getting the justice they deserve.\n\n"
-        "This may increase unhelpful emotions like shame and guilt as it delays their healing. It may also add to their toxic self-blame."
+        "🚫 *Victim Blaming & Rape Myths* 🚫\n\n"
+        "Rape Myths can also perpetuate victim blaming and discourage survivors from speaking out.\n\n"
+        "Rape myths can be in these forms:\n"
+        "- Blaming the victim (e.g. \"they should have resisted the attacker more\")\n"
+        "- Doubting the allegations (e.g. \"she just regrets having sex with him and is now looking for a way to feel better\")\n"
+        "- Excusing the accused's behaviour (e.g. \"he was too drunk to know what he was doing\")\n"
+        "- Insists that sexual violence only happens to specific types of people (e.g. \"men don't get raped\").\n\n"
+        "Read more about [rape myths](https://www.instagram.com/p/C2jCbS3B7-p/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)"
     )
     keyboard = [
-        [InlineKeyboardButton("➡️ Rape Myths", callback_data='learn_rape_myths')],
-        back_button('learn_victim_blaming'),
+        back_button('learn_sa'),
         [InlineKeyboardButton("Main menu 🏠", callback_data='learn_and_volunteer')]
-        
     ]
-    
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
 
 async def learn_rape_myths(update: Update, context):
     text = (
         "❌ *Rape Myths* ❌\n\n"
-        "Rape Myths can also perpetuate victim blaming and discourge survivors from speaking out.\n\n"
+        "Rape Myths can also perpetuate victim blaming and discourage survivors from speaking out.\n\n"
         "Rape myths can be in these forms:\n"
-        "- Blaming the victim (e.g. “they should have resisted the attacker more”)\n"
-        "- Doubting the allegations (e.g. “she just regrets having sex with him and is now looking for a way to feel better”)\n"
-        "- Excusing the accused’s behaviour (e.g. “he was too drunk to know what he was doing”)\n"
-        "- Insists that sexual violence only happens to specific types of people (e.g. “men don’t get raped”).\n\n"
+        "- Blaming the victim (e.g. \"they should have resisted the attacker more\")\n"
+        "- Doubting the allegations (e.g. \"she just regrets having sex with him and is now looking for a way to feel better\")\n"
+        "- Excusing the accused's behaviour (e.g. \"he was too drunk to know what he was doing\")\n"
+        "- Insists that sexual violence only happens to specific types of people (e.g. \"men don't get raped\").\n\n"
         "Read more about [rape myths](https://www.instagram.com/p/C2jCbS3B7-p/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)"
-        )
+    )
     keyboard = [
         back_button('learn_victim_blaming2'),
         [InlineKeyboardButton("Main menu 🏠", callback_data='learn_and_volunteer')]
-        
     ]
-    
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
+
+async def care_journaling_prompts(update: Update, context):
+    trigger_warning = (
+        "⚠️ *Content Warning* ⚠️\n\n"
+        "The following journaling prompts may bring up difficult emotions and memories. "
+        "Please take care of yourself and only engage with prompts that feel safe for you. "
+        "You can skip any prompt that feels too difficult.\n\n"
+    )
+    text = (
+        "📝 *Journaling Prompts* 📝\n\n"
+        "*General prompts:*\n"
+        "• How are you feeling today? List down 3 emotions you are currently feeling\n"
+        "• What is 1 thing on your mind you want to write about today?\n"
+        "• What are 3 things that happened this week? How did it make you feel?\n\n"
+        "*Focusing on the assault:*\n"
+        "• How do you feel when you recall the assault that happened?\n"
+        "• How do you feel about the person that sexually assaulted you?\n\n"
+        "*Focusing on being kinder to yourself:*\n"
+        "• What is 1 thing about yourself that you love?\n"
+        "• What is 1 good thing that happened this week?\n"
+        "• What are 3 things you are grateful for today?"
+    )
+    keyboard = [back_button('care_journaling')]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    await update.callback_query.edit_message_text(trigger_warning + text, parse_mode='Markdown', reply_markup=reply_markup)
+
+async def care_younger_self(update: Update, context):
+    trigger_warning = (
+        "⚠️ *Content Warning* ⚠️\n\n"
+        "Writing to your younger self can bring up strong emotions and memories. "
+        "Please take care of yourself and take breaks if needed. "
+        "Remember that you can stop at any time.\n\n"
+    )
+    text = (
+        "✍️ *Letter to my younger self* ✍️\n\n"
+        "Writing a letter to your younger self can be incredibly healing. If you are a survivor, "
+        "writing a letter to the person you were that had to go through that assault, can be even more healing.\n\n"
+        "Write a letter to the person that had to face the assault. What would you say to them? "
+        "What would they want to hear when that happened? Do you want to remind them about how strong they were, "
+        "about how they did everything they could, about how it was not their fault?\n\n"
+        "Write to them. Show them the love you hoped to receive. And that's the love that you will receive as you finish the letter to yourself."
+    )
+    keyboard = [back_button('care_tips')]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    await update.callback_query.edit_message_text(trigger_warning + text, parse_mode='Markdown', reply_markup=reply_markup)

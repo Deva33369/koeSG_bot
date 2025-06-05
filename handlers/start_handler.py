@@ -11,6 +11,12 @@ async def start(update: Update, context):
         [InlineKeyboardButton("Have some feedback?", callback_data='feedback')]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
+    trigger_warning = (
+        "⚠️ *Trigger Warning* ⚠️\n\n"
+        "This bot discusses topics related to sexual assault and trauma. "
+        "Some content may be triggering or distressing. Please take care of yourself "
+        "and use this resource at your own pace. You can always take a break or exit.\n\n"
+    )
     intro_text = (
         "🤝 *About KOE & This Bot* 🤝\n\n"
         "Hello! This bot is was created by KOE, a project that strives to amplify voices of sexual assault survivors in Singapore.\n\n"
@@ -18,7 +24,7 @@ async def start(update: Update, context):
         "This bot ensures privacy and confidentiality, thereby your user is kept completely anonymous. If you would like to reach out to KOE for any matters, do email us via gmail at koebusiness2022@gmail.com"
     )
     if update.message:
-        await update.message.reply_text(intro_text, parse_mode='Markdown')
+        await update.message.reply_text(trigger_warning + intro_text, parse_mode='Markdown')
         await update.message.reply_text("Please choose an option below:", reply_markup=reply_markup)
     else:
         await update.callback_query.edit_message_text("Please choose an option below:", reply_markup=reply_markup)
