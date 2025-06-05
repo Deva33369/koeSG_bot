@@ -5,8 +5,7 @@ async def community(update: Update, context):
     text = (
         "🌟 *Join our Community!* 🌟\n\n"
         "Connect with survivors and allies in a safe, moderated space.\n"
-        "- [KOE Support Group](https://t.me/koe_support) (Private, survivors-only)\n"
-        "- [Public Awareness Channel](https://t.me/koe_public) (Updates/resources)\n\n"
+        "- [Public Awareness Channel](https://t.me/KOECO) (Updates/resources)\n\n"
         "Rules:\n"
         "1. Respect anonymity.\n"
         "2. No victim-blaming.\n"
