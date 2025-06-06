@@ -4,12 +4,16 @@ from handlers.utils import back_button, next_button
 async def learn(update: Update, context):
     text = (
         "📢 *Learn & Volunteer* 📢\n\n"
-        "*Educational Guides*:\n"
-        "- [Understanding Consent](https://example.com/consent)\n"
-        "- [How to Support Survivors](https://example.com/support-guide)\n\n"
-        "*Volunteer Opportunities*:\n"
-        "- Join KOE's outreach team (Email us!).\n"
-        "- Help moderate our community chats."
+        "Welcome to our educational and volunteering hub! Here, you can:\n\n"
+        "🎓 *Learn More*\n"
+        "- Understand how to support survivors\n"
+        "- Learn about consent and sexual assault\n"
+        "- Educate yourself about common misconceptions\n\n"
+        "🤝 *Volunteer With Us*\n"
+        "- Join our community initiatives\n"
+        "- Help create awareness\n"
+        "- Make a difference in survivors' lives\n\n"
+        "Choose an option below to get started:"
     )
     keyboard = [
         [InlineKeyboardButton("I want to know how to support survivors 🫂", callback_data='learn_tips')],
@@ -25,7 +29,7 @@ async def learn_tips(update: Update, context):
     text = (
         "🫂 *Supporting Survivors* 🫂\n\n"
         "Response towards sexual assault is critical whereby negative reactions can spiral into something much worse. Here are some tips and reminders when responding to a survivor ❤️‍🩹\n\n"
-
+        "*Click next to learn more!*"
     )
 
     keyboard = [
@@ -89,29 +93,32 @@ async def learn_tips4(update: Update, context):
 
 async def volunteer(update: Update, context):
     text = (
-        "Thank you for your interest in volunteering with KOE! Here are some volunteering opportunities available!"
+        "💫 *Volunteer with KOE* 💫\n\n"
+        "Thank you for your interest in volunteering with KOE! You can click on the links below to find out more:\n\n"
     )
     
     keyboard = [
+        [InlineKeyboardButton("Visit Our Channel", url="https://t.me/KOECO")],
+        [InlineKeyboardButton("Visit Our Page", url="https://www.instagram.com/koe.co_/")],
         back_button('learn')
     ]
+    
     reply_markup = InlineKeyboardMarkup(keyboard)
+    
     await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
 
 
 async def learn_sa(update: Update, context):
-    trigger_warning = (
-        "⚠️ *Content Warning* ⚠️\n\n"
-        "The following sections contain detailed information about sexual assault, "
-        "grooming, and related topics. This content may be triggering or distressing. "
-        "Please take care of yourself and proceed only if you feel ready.\n\n"
-    )
     text = (
-        "💡 *Learning more* 💡\n\n"
-        "Learning more about sexual assault and consent can be a great way to ensure we continue to teach ourselves and our loved ones the right thing!\n\n"
-        "We also hope education can be a way to remind survivors that it was not "
-        "their fault. We hope these topics (and more to come) will support your learning and understanding about sexual assault 🤍"
-    )
+            "⚠️ *Content Warning* ⚠️\n\n"
+            "The following sections contain detailed information about sexual assault, "
+            "grooming, and related topics. This content may be triggering or distressing. "
+            "Please take care of yourself and proceed only if you feel ready.\n\n"
+            "💡 *Learning more* 💡\n\n"
+            "Learning more about sexual assault and consent can be a great way to ensure we continue to teach ourselves and our loved ones the right thing!\n\n"
+            "We also hope education can be a way to remind survivors that it was not "
+            "their fault. We hope these topics (and more to come) will support your learning and understanding about sexual assault 🤍"
+        )
   
     keyboard = [
         [InlineKeyboardButton("What is Sexual Assault?", callback_data='learn_sexual_assault')],
@@ -121,28 +128,53 @@ async def learn_sa(update: Update, context):
         back_button('learn')
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    await update.callback_query.edit_message_text(trigger_warning + text, parse_mode='Markdown', reply_markup=reply_markup)
+    await update.callback_query.edit_message_text(text=text, parse_mode='Markdown', reply_markup=reply_markup)
 
 
 async def learn_sexual_assault(update: Update, context):
     text = (
         "⛔ *Sexual Assault* ⛔\n\n"
         "Sexual assault can include:\n\n"
-        "- Any penetration without consent (e.g. vaginal, oral or anal), using any part of the body (penis, fingers) or object.\n"
-        "- Any unwanted sexual touching, stroking, kissing, groping, etc.\n"
-        "- Unwanted sexual requests, messages or gestures, including electronically, in the workplace or elsewhere.\n"
-        "- Being made to view pornography against your will.\n"
-        "- Unwanted taking and/or sharing of nude or intimate photographs or videos, e.g. upskirting."
+        "🔹 Any penetration without consent (e.g. vaginal, oral or anal), using any part of the body (penis, fingers) or object.\n"
+        "🔹 Any unwanted sexual touching, stroking, kissing, groping, etc.\n"
+        "🔹 Unwanted sexual requests, messages or gestures, including electronically, in the workplace or elsewhere.\n"
+        "🔹 Being made to view pornography against your will.\n"
+        "🔹 Unwanted taking and/or sharing of nude or intimate photographs or videos, e.g. upskirting.\n\n"
+        "*If you feel like you or any of your loved ones have experienced something similar, you can find support by clicking on the button below*"
     )
    
     keyboard = [
+        [InlineKeyboardButton("Get Support", callback_data='help')],
         back_button('learn_sa'),
+        [InlineKeyboardButton("Learn More ➡️", callback_data='learn_sexual_assault2')],
         [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]
         
         ]
 
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
+
+async def learn_sexual_assault2(update: Update, context):
+    text = (
+        "Sexual assault can leave physical and emotional scars that last a long time. Some victims find that emotional scars never go away. Some possible effects of sexual assault would be: \n\n"
+        "*Shame:* thinking they are bad, wrong, dirty, or permanently flawed\n"
+        "*Guilt:* blaming themselves for what happened\n"
+        "*Denying* or *minimizing* the assault as a coping strategy (eg, “It wasn't that bad.” “It only happened once.”)\n"
+        "Struggling to set and reinforce *boundaries* due to the violation that occurred\n\n"
+        "Read more [here](https://www.instagram.com/p/CeGFlTGhZ0p/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)"
+        )
+   
+    keyboard = [
+
+        back_button('learn_sexual_assault'),
+        [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]
+        
+        ]
+
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
+
+
 
 async def learn_sexual_grooming(update: Update, context):
     text = (
@@ -198,7 +230,8 @@ async def learn_consent(update: Update, context):
     text = (
         "🤝 *Consent* 🤝\n\n"
         "Consent is an agreement between participants to engage in sexual activity. It is volatile and can change at any point during the interaction between both parties. You can withdraw consent at any point in time if you feel uncomfortable.\n\n" 
-
+        "When you’re engaging in sexual activity, consent communication should happen *every* time for *every* type of activity. Consenting to one activity, at one time does not mean someone gives consent for other activities or for the same activity on other occasions (eg, kissing someone doesn’t give them permission to remove your clothes)\n\n"
+        "*Click next to learn more*"
     )
     keyboard = [
         next_button('learn_consent2'),
@@ -213,7 +246,10 @@ async def learn_consent(update: Update, context):
 async def learn_consent2(update: Update, context):
     text = (
         "🤝 *Consent* 🤝\n\n"
-        "When you're engaging in sexual activity, consent communication should happen *every* time for *every* type of activity. Consenting to one activity, at one time does not mean someone gives consent for other activities or for the same activity on other occasions (eg, kissing someone doesn't give them permission to remove your clothes)\n\n"
+        "Our bodily pleasure during sexual intercourse does not naturally equate to consent by the victim. Physiological responses like an erection, "
+        "lubrication, arousal, or orgasm are involuntary, meaning your body might react one way even when you are not consenting to the activity.\n\n" 
+        "Read more [here](https://www.instagram.com/p/CfaZQaOB8JU/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)\n"
+        
     )
     keyboard = [
         next_button('learn_consent3'),
@@ -230,69 +266,22 @@ async def learn_consent2(update: Update, context):
 async def learn_consent3(update: Update, context):
     text = (
         "🤝 *Consent* 🤝\n\n"
-        "When you’re engaging in sexual activity, consent communication should happen *every* time for *every* type of activity. Consenting to one activity, at one time does not mean someone gives consent for other activities or for the same activity on other occasions (eg, kissing someone doesn’t give them permission to remove your clothes)\n\n"
-    )
-    keyboard = [
-        next_button('learn_consent4'),
-        back_button('learn_consent2'),
-        [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]
-        
-        ]
-    
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
-
-async def learn_consent4(update: Update, context):
-    text = (
-        "🤝 *Consent* 🤝\n\n"
-        "When you’re engaging in sexual activity, consent communication should happen *every* time for *every* type of activity. Consenting to one activity, at one time does not mean someone gives consent for other activities or for the same activity on other occasions (eg, kissing someone doesn’t give them permission to remove your clothes)\n\n"
-    )
-    keyboard = [
-        next_button('learn_consent4'),
-        back_button('learn_consent2'),
-        [InlineKeyboardButton("Main menu 🏠", callback_data='learn_and_volunteer')]
-        
-        ]
-    
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
-
-async def learn_consent4(update: Update, context):
-    text = (
-        "🤝 *Consent* 🤝\n\n"
-        "Our bodily pleasure during sexual intercourse does not naturally equate to consent by the victim. Physiological responses like an erection, "
-        "lubrication, arousal, or orgasm are involuntary, meaning your body might react one way even when you are not consenting to the activity.\n\n" 
-        "Read more [here](https://www.instagram.com/p/CfaZQaOB8JU/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)\n"
-        
-    )
-    keyboard = [
-        next_button('learn_consent4'),
-        back_button('learn_consent2'),
-        [InlineKeyboardButton("Main menu 🏠", callback_data='learn_and_volunteer')]
-        
-        ]
-    
-    
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
-
-async def learn_consent4(update: Update, context):
-    text = (
-        "🤝 *Consent* 🤝\n\n"
         "Consent *cannot* be given by:\n\n"
-        "- individuals who are underage, intoxicated or incapacitated by drugs or alcohol, or asleep or unconscious.\n"
-        "- someone who agrees to an activity under the pressure of intimidation or threat\n"
-        "- those in unequal power dynamics (such as engaging in sexual activity with an employee or student)\n\n"
+        "🔹 individuals who are underage, intoxicated or incapacitated by drugs or alcohol, or asleep or unconscious.\n"
+        "🔹 someone who agrees to an activity under the pressure of intimidation or threat\n"
+        "🔹 those in unequal power dynamics (such as engaging in sexual activity with an employee or student)\n\n"
         "Read more about [consent](https://www.instagram.com/p/Ce-L3pNhpYm/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)\n"
         "Read more about [enthusiastic consent](https://www.instagram.com/p/CihJKZuBRZ9/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)")
+   
     keyboard = [
-        back_button('learn_consent3'),
+        back_button('learn_consent2'),
         [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]
         
         ]
     
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
+
 
 
 
@@ -311,18 +300,17 @@ async def learn_victim_blaming(update: Update, context):
 
 async def learn_victim_blaming2(update: Update, context):
     text = (
-        "🚫 *Victim Blaming & Rape Myths* 🚫\n\n"
-        "Rape Myths can also perpetuate victim blaming and discourage survivors from speaking out.\n\n"
-        "Rape myths can be in these forms:\n"
-        "- Blaming the victim (e.g. \"they should have resisted the attacker more\")\n"
-        "- Doubting the allegations (e.g. \"she just regrets having sex with him and is now looking for a way to feel better\")\n"
-        "- Excusing the accused's behaviour (e.g. \"he was too drunk to know what he was doing\")\n"
-        "- Insists that sexual violence only happens to specific types of people (e.g. \"men don't get raped\").\n\n"
-        "Read more about [rape myths](https://www.instagram.com/p/C2jCbS3B7-p/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)"
+        "❌ *Victim Blaming* ❌\n\n"
+        "Blaming the victim makes it more difficult for that person to come forward and report the assault. On a societal level, it means fewer crimes get reported and fewer predators get prosecuted.\n\n"
+        "Victim blaming can lead to increased and unnecessary suffering for the victims. They may experience ridicule while at the same time watching their predators avoid punishment instead of getting the justice they deserve.\n\n"
+        "This may increase unhelpful emotions like shame and guilt as it delays their healing. It may also add to their toxic self-blame.\n\n"
+        "Read more about victim blaming [here](https://www.instagram.com/p/CkArdp3hWKd/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)"
     )
     keyboard = [
-        back_button('learn_sa'),
+        [InlineKeyboardButton("➡️ Rape Myths", callback_data='learn_rape_myths')],
+        back_button('learn_victim_blaming'),
         [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]
+        
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)

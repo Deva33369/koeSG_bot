@@ -17,7 +17,7 @@ from handlers.learn_handler import (
     learn, learn_tips, learn_tips2, learn_tips3, learn_tips4,
     volunteer, learn_sa, learn_sexual_assault, learn_sexual_grooming,
     learn_sexual_grooming2, learn_sexual_grooming3, learn_consent,
-    learn_consent2, learn_consent3, learn_consent4, learn_victim_blaming,
+    learn_consent2, learn_consent3, learn_victim_blaming,
     learn_victim_blaming2, learn_rape_myths
 )
 from handlers.feedback_handler import feedback, handle_feedback
@@ -30,21 +30,6 @@ async def myid(update: Update, context):
         "If you are the admin, please copy this ID and update it in the config.py file.",
         parse_mode='Markdown'
     )
-
-
-async def check_channel_access(bot):
-    """Check if bot has access to channel"""
-    try:
-        channel_id = "@KOECO"
-        await bot.get_chat(channel_id)
-        print(f"Successfully connected to channel {channel_id}")
-    except TelegramError as e:
-        print(f"Error accessing channel: {e}")
-        print("Please ensure bot is admin of @KOECO channel")
-
-async def post_init(application: Application):
-    """Called after bot initialization"""
-    await check_channel_access(application.bot)
 
 async def handle_story(update: Update, context):
     if context.user_data.get('expecting_story'):
@@ -82,7 +67,7 @@ async def handle_message(update: Update, context):
         await handle_feedback(update, context)
 
 def main():
-    application = Application.builder().token(TOKEN).post_init(post_init).build()
+    application = Application.builder().token(TOKEN).build()
 
 
     # Main menu handlers
@@ -93,7 +78,7 @@ def main():
     application.add_handler(CallbackQueryHandler(help, pattern='^help$'))
     application.add_handler(CallbackQueryHandler(support, pattern='^support$'))
     application.add_handler(CallbackQueryHandler(care, pattern='^care$'))
-    application.add_handler(CallbackQueryHandler(learn, pattern='^learn_and_volunteer$'))
+    application.add_handler(CallbackQueryHandler(learn, pattern='^learn'))
     application.add_handler(CallbackQueryHandler(feedback, pattern='^feedback$'))
     
     # Help menu handlers
@@ -129,14 +114,10 @@ def main():
     application.add_handler(CallbackQueryHandler(learn_consent, pattern="^learn_consent$"))
     application.add_handler(CallbackQueryHandler(learn_consent2, pattern="^learn_consent2$"))
     application.add_handler(CallbackQueryHandler(learn_consent3, pattern="^learn_consent3$"))
-    application.add_handler(CallbackQueryHandler(learn_consent4, pattern="^learn_consent4$"))
     application.add_handler(CallbackQueryHandler(learn_victim_blaming, pattern="^learn_victim_blaming$"))
     application.add_handler(CallbackQueryHandler(learn_victim_blaming2, pattern="^learn_victim_blaming2$"))
     application.add_handler(CallbackQueryHandler(learn_rape_myths, pattern="^learn_rape_myths$"))
     
-
-
-
     # Story submission handler
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_story))
 
@@ -144,7 +125,7 @@ def main():
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
     
-    print('Bot is running...')
+    print('Bot is running...') 
     application.run_polling()
 
 if __name__ == '__main__':
