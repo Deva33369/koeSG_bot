@@ -94,12 +94,31 @@ async def learn_tips4(update: Update, context):
 async def volunteer(update: Update, context):
     text = (
         "💫 *Volunteer with KOE* 💫\n\n"
-        "Thank you for your interest in volunteering with KOE! You can click on the links below to find out more:\n\n"
+        "Thank you for your interest in volunteering with KOE! This is our current volunteering opportunity:\n\n"
+        "*Calling Out For Volunteers!*\n\n"
+
+        "Date: 22nd March 2025, 7pm\n"
+        "Venue: 9 Raffles Place, Republic Plaza Tower 1 #02-01/02 Singapore, 048619\n\n"
+
+        "AWARE is organising a panel discussion and FGD to focus on nightlife safety and inclusivity in Singapore!\n\n" 
+
+        "What’s happening:\n\n"
+
+        "🎤 Panel Discussion: Hear from some folks who’ve made efforts to improve safety in the nightlife scene.\n\n"
+
+        "🎧 Listening Circles: Share your experiences, brainstorm ideas, and help shape the future of nightlife safety.\n\n"
+
+        "🤝 Connect & Collaborate: Meet others who are passionate about creating a safer, more vibrant nightlife community.\n\n"
+
+        "AWARE is looking for *volunteer notetakers* to support in this event! If you are interested to support AWARE and learn more about SG's nightlife, do reach out to us on Instagram and we will get back to you!\n\n"
+
+        "🌸 a KOE member will be there too if you would like a familiar face to volunteer with! feel free to bring a friend along and volunteer together as well! :)\n\n"
+        "For more volunteering opportunities, do keep a look out at our links below!"
     )
     
     keyboard = [
         [InlineKeyboardButton("Visit Our Channel", url="https://t.me/KOECO")],
-        [InlineKeyboardButton("Visit Our Page", url="https://www.instagram.com/koe.co_/")],
+        [InlineKeyboardButton("Visit Our Instagram page", url="https://www.instagram.com/koe.co_/")],
         back_button('learn')
     ]
     
