@@ -145,9 +145,9 @@ async def support_legal_police(update: Update, context):
 async def support_legal_poha(update: Update, context):
     text = (
         "📄 *Protection from Harassment Act (POHA)* 📄\n\n"
-        "If you're being harassed online or offline, you can file for protection under POHA.\n\n"
-        "🔹 File online via [iFAMS](https://ifams.gov.sg)\n"
-        "🔹 You can seek advice from AWARE or the Legal Aid Bureau\n"
+        "If you're being harassed online or offline, you can seek help under POHA.\n\n"
+        "🔹 Learn more and get guidance via [AWARE's POHA Information Page](https://sacc.aware.org.sg/get-information/protection-from-harassment-act/)\n"
+        "🔹 You can also seek advice from AWARE or the Legal Aid Bureau\n"
         "🔹 Court may grant Protection Order, Expedited Order, or Counselling"
     )
     keyboard = [
@@ -160,10 +160,10 @@ async def support_legal_poha(update: Update, context):
 async def support_legal_ppo(update: Update, context):
     text = (
         "🛡 *Personal Protection Order (PPO)* 🛡\n\n"
-        "You can apply for a PPO if you're experiencing family violence.\n\n"
-        "- Apply via Family Justice Courts\n"
-        "- You can get counselling or mediation\n"
-        "- Assistance available through AWARE or Family Service Centres"
+        "If you're experiencing family violence, you can seek help and apply for a PPO.\n\n"
+        "🔹 Learn more and get guidance via [AWARE's PPO Information Page](https://www.aware.org.sg/information/dealing-with-family-violence/getting-a-personal-protection-order/)\n"
+        "🔹 You can also get counselling or mediation\n"
+        "🔹 Assistance available through AWARE or Family Service Centres"
     )
     keyboard = [
         [InlineKeyboardButton("🔙 Back to Legal Options", callback_data='support_legal')],
@@ -179,6 +179,7 @@ async def support_legal_other(update: Update, context):
         "• *Protection for Persons with Mental Disabilities Act (PPMDA)*\n"
         "• *Workplace harassment reporting (via HR or MOM)*\n"
         "• *University/School complaint mechanisms*\n\n"
+        "Learn more and get guidance via [AWARE's Filing a Complaint Page](https://sacc.aware.org.sg/get-help/filing-a-complaint/)\n\n"
         "Legal processes can feel scary, but you’re not alone. You deserve to feel safe."
     )
     keyboard = [
