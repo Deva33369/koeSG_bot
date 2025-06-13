@@ -5,7 +5,11 @@ from config import TOKEN, ADMIN_ID
 from handlers.start_handler import start
 from handlers.community_handler import community
 from handlers.help_handler import help, emergency_police, emergency_sos, helplines
-from handlers.support_handler import support, support_counselling, support_legal
+from handlers.support_handler import (
+    support, support_counselling, support_legal,
+    support_legal_clinic, support_legal_police,
+    support_legal_poha, support_legal_ppo, support_legal_other,
+)
 from handlers.care_handler import (
     care, care_story, care_support_groups, care_tips, care_journaling,
     care_journaling_prompts, care_grounding, care_letters, care_younger_self
@@ -89,6 +93,11 @@ def main():
     # Support menu handlers
     application.add_handler(CallbackQueryHandler(support_counselling, pattern='^support_counselling$'))
     application.add_handler(CallbackQueryHandler(support_legal, pattern='^support_legal$'))
+    application.add_handler(CallbackQueryHandler(support_legal_clinic, pattern='^support_legal_clinic$'))
+    application.add_handler(CallbackQueryHandler(support_legal_police, pattern='^support_legal_police$'))
+    application.add_handler(CallbackQueryHandler(support_legal_poha, pattern='^support_legal_poha$'))
+    application.add_handler(CallbackQueryHandler(support_legal_ppo, pattern='^support_legal_ppo$'))
+    application.add_handler(CallbackQueryHandler(support_legal_other, pattern='^support_legal_other$'))
     
     # Care menu handlers
     application.add_handler(CallbackQueryHandler(care_story, pattern='^care_story$'))
