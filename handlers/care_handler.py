@@ -1,5 +1,7 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from handlers.utils import back_button
+import random
+import os
 
 async def care(update: Update, context):
     text = (
@@ -124,17 +126,43 @@ async def care_grounding(update: Update, context):
     await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
 
 async def care_letters(update: Update, context):
-    text = (
-        "💌 *Encouragement Letters* 💌\n\n"
-        "Here are some letters from the public for survivors of sexual assault! "
-        "We hope that these letters will serve as a reminder and as an encouragement, that we are here with you."
-    )
-    keyboard = [
-        [InlineKeyboardButton("Send another letter", callback_data='care_letters')],
-        back_button('care_tips')
-    ]
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
+    # Get a random encouragement image
+    images_folder = "images"
+    encouragement_images = [f for f in os.listdir(images_folder) if f.startswith("encourage_mess") and f.endswith(".jpg")]
+    
+    if encouragement_images:
+        random_image = random.choice(encouragement_images)
+        image_path = os.path.join(images_folder, random_image)
+        
+        # Send the image with caption
+        with open(image_path, 'rb') as photo:
+            await update.callback_query.message.reply_photo(
+                photo=photo,
+                caption="💌 *Encouragement Letters* 💌\n\nHere are some letters from the public for survivors of sexual assault! We hope that these letters will serve as a reminder and as an encouragement, that we are here with you.",
+                parse_mode='Markdown'
+            )
+        
+        # Edit the original message to show the button options
+        text = "💌 *Encouragement Letters* 💌\n\nHere's an encouragement letter for you! 💖"
+        keyboard = [
+            [InlineKeyboardButton("Send another letter", callback_data='care_letters')],
+            back_button('care_tips')
+        ]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
+    else:
+        # Fallback if no images found
+        text = (
+            "💌 *Encouragement Letters* 💌\n\n"
+            "Here are some letters from the public for survivors of sexual assault! "
+            "We hope that these letters will serve as a reminder and as an encouragement, that we are here with you."
+        )
+        keyboard = [
+            [InlineKeyboardButton("Send another letter", callback_data='care_letters')],
+            back_button('care_tips')
+        ]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
 
 async def care_younger_self(update: Update, context):
     text = (
