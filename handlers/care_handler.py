@@ -1,7 +1,9 @@
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import Update
 from handlers.utils import back_button
 import random
 import os
+from handlers.support_handler import support
 
 async def care(update: Update, context):
     text = (
@@ -14,7 +16,7 @@ async def care(update: Update, context):
         [InlineKeyboardButton("Share Your Story", callback_data='care_story')],
         [InlineKeyboardButton("Support Groups", callback_data='care_support_groups')],
         [InlineKeyboardButton("Self Care Tips", callback_data='care_tips')],
-        [InlineKeyboardButton("Other Support & Resources", callback_data='care_resources')],
+        [InlineKeyboardButton("Other Support & Resources", callback_data='support')],
         [InlineKeyboardButton("Helplines", callback_data='care_helplines')],
         back_button()
     ]
@@ -177,3 +179,6 @@ async def care_younger_self(update: Update, context):
     keyboard = [back_button('care_tips')]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
+
+async def care_resources(update: Update, context):
+    await support(update, context)
