@@ -85,6 +85,18 @@ def main():
         # Initialize the application with error handling
         application = Application.builder().token(TOKEN).build()
         
+        # Clear any existing webhook to prevent conflicts
+        async def clear_webhook():
+            try:
+                await application.bot.delete_webhook()
+                print("Webhook cleared successfully")
+            except Exception as e:
+                print(f"Error clearing webhook: {e}")
+        
+        # Run webhook clearing
+        import asyncio
+        asyncio.run(clear_webhook())
+        
         # Main menu handlers
         application.add_handler(CommandHandler('start', start))
         application.add_handler(CommandHandler('myid', myid))
