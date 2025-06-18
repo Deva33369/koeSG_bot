@@ -1,4 +1,5 @@
 import os
+import asyncio
 from telegram import Update 
 from telegram.error import TelegramError
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters, ContextTypes
@@ -126,14 +127,17 @@ def setup_handlers(application: Application):
     # Message handlers
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
-async def run_bot():
-    """Run the bot with polling"""
+def main():
+    """Run the bot."""
+    # Create the Application and pass it your bot's token.
     application = Application.builder().token(TOKEN).build()
+
+    # Register all handlers
     setup_handlers(application)
-    
+
+    # Run the bot until the user presses Ctrl-C
     print('Bot is running...')
-    await application.run_polling()
+    application.run_polling()
 
 if __name__ == '__main__':
-    import asyncio
-    asyncio.run(run_bot())
+    main()
