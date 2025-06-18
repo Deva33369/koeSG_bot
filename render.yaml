@@ -1,9 +1,10 @@
 services:
-  - type: worker
-    name: koe-bot
+  - type: web
+    name: BloomBot_KOE
+    runtime: python
     env: python
     buildCommand: pip install -r requirements.txt
     startCommand: python main.py
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.11.0 
+      - key: TOKEN
+        value: 7750078176:AAFstaPP2l1-K3veM-RnFoSYIVq1iwK0KCA

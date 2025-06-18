@@ -142,7 +142,7 @@ async def volunteer(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     
                     for message in messages:
                         if message.is_automatic_forward:
-                            print(f"Found forwarded message: {message.text[:100]}...")
+                            #print(f"Found forwarded message: {message.text[:100]}...")
                             await message.forward(chat_id=update.effective_chat.id)
                             pinned_found = True
                             break
@@ -151,7 +151,7 @@ async def volunteer(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         # Forward the latest message as fallback
                         if messages:
                             latest_message = messages[0]
-                            print(f"Forwarding latest message: {latest_message.text[:100]}...")
+                            #print(f"Forwarding latest message: {latest_message.text[:100]}...")
                             await latest_message.forward(chat_id=update.effective_chat.id)
                         else:
                             raise Exception("No messages found in channel")
