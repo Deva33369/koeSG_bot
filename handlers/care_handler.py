@@ -4,6 +4,7 @@ from handlers.utils import back_button
 import random
 import os
 from handlers.support_handler import support
+import time
 
 async def care(update: Update, context):
     text = (
@@ -45,10 +46,14 @@ async def care_story(update: Update, context):
 
 async def care_story_another(update: Update, context):
     """Handler for sharing another story"""
+    # Add a unique identifier to prevent "Message is not modified" error
+    unique_id = int(time.time())
+    
     text = (
         "📝 *Share Another Story* 📝\n\n"
         "Thank you for sharing your previous story. If you have more stories to share, please type them below.\n\n"
-        "Each story will be sent separately to our team for review."
+        "⚠️ *Please type your story below in 1 message.* Each story will be sent separately to our team for review.\n\n"
+        f"*Session ID: {unique_id}*"
     )
     keyboard = [
         [InlineKeyboardButton("Share Another Story", callback_data='care_story_another')],
