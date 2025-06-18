@@ -81,72 +81,77 @@ async def handle_message(update: Update, context):
         await handle_feedback(update, context)
 
 def main():
-    application = Application.builder().token(TOKEN).build()
+    try:
+        # Initialize the application with error handling
+        application = Application.builder().token(TOKEN).build()
+        
+        # Main menu handlers
+        application.add_handler(CommandHandler('start', start))
+        application.add_handler(CommandHandler('myid', myid))
+        application.add_handler(CallbackQueryHandler(start, pattern='^start$'))
+        application.add_handler(CallbackQueryHandler(community, pattern='^community$'))
+        application.add_handler(CallbackQueryHandler(help, pattern='^help$'))
+        application.add_handler(CallbackQueryHandler(support, pattern='^support$'))
+        application.add_handler(CallbackQueryHandler(care, pattern='^care$'))
+        application.add_handler(CallbackQueryHandler(learn, pattern='^learn'))
+        application.add_handler(CallbackQueryHandler(feedback, pattern='^feedback$'))
+        
+        # Help menu handlers
+        application.add_handler(CallbackQueryHandler(emergency_police, pattern='^emergency_police$'))
+        application.add_handler(CallbackQueryHandler(emergency_sos, pattern='^emergency_sos$'))
+        application.add_handler(CallbackQueryHandler(helplines, pattern='^helplines$'))
+        
+        # Support menu handlers
+        application.add_handler(CallbackQueryHandler(support_counselling, pattern='^support_counselling$'))
+        application.add_handler(CallbackQueryHandler(support_legal, pattern='^support_legal$'))
+        application.add_handler(CallbackQueryHandler(support_legal_clinic, pattern='^support_legal_clinic$'))
+        application.add_handler(CallbackQueryHandler(support_legal_police, pattern='^support_legal_police$'))
+        application.add_handler(CallbackQueryHandler(support_legal_poha, pattern='^support_legal_poha$'))
+        application.add_handler(CallbackQueryHandler(support_legal_ppo, pattern='^support_legal_ppo$'))
+        application.add_handler(CallbackQueryHandler(support_legal_other, pattern='^support_legal_other$'))
+        
+        # Care menu handlers
+        application.add_handler(CallbackQueryHandler(care_story, pattern='^care_story$'))
+        application.add_handler(CallbackQueryHandler(care_story_another, pattern='^care_story_another$'))
+        application.add_handler(CallbackQueryHandler(care_support_groups, pattern='^care_support_groups$'))
+        application.add_handler(CallbackQueryHandler(care_tips, pattern='^care_tips$'))
+        application.add_handler(CallbackQueryHandler(care_journaling, pattern='^care_journaling$'))
+        application.add_handler(CallbackQueryHandler(care_journaling_prompts, pattern='^care_journaling_prompts$'))
+        application.add_handler(CallbackQueryHandler(care_grounding, pattern='^care_grounding$'))
+        application.add_handler(CallbackQueryHandler(care_letters, pattern='^care_letters$'))
+        application.add_handler(CallbackQueryHandler(care_younger_self, pattern='^care_younger_self$'))
 
+        #learn and volunteer handlers
+        application.add_handler(CallbackQueryHandler(learn_tips, pattern="^learn_tips$"))
+        application.add_handler(CallbackQueryHandler(learn_tips2, pattern="^learn_tips2$"))
+        application.add_handler(CallbackQueryHandler(learn_tips3, pattern="^learn_tips3$"))
+        application.add_handler(CallbackQueryHandler(learn_tips4, pattern="^learn_tips4$"))
+        application.add_handler(CallbackQueryHandler(volunteer, pattern="^volunteer$"))
+        application.add_handler(CallbackQueryHandler(learn_sa, pattern="^learn_sa$"))
+        application.add_handler(CallbackQueryHandler(learn_sexual_assault, pattern="^learn_sexual_assault$"))
+        application.add_handler(CallbackQueryHandler(learn_sexual_grooming, pattern="^learn_sexual_grooming$"))
+        application.add_handler(CallbackQueryHandler(learn_sexual_grooming2, pattern="^learn_sexual_grooming2$"))
+        application.add_handler(CallbackQueryHandler(learn_sexual_grooming3, pattern="^learn_sexual_grooming3$"))
+        application.add_handler(CallbackQueryHandler(learn_consent, pattern="^learn_consent$"))
+        application.add_handler(CallbackQueryHandler(learn_consent2, pattern="^learn_consent2$"))
+        application.add_handler(CallbackQueryHandler(learn_consent3, pattern="^learn_consent3$"))
+        application.add_handler(CallbackQueryHandler(learn_victim_blaming, pattern="^learn_victim_blaming$"))
+        application.add_handler(CallbackQueryHandler(learn_victim_blaming2, pattern="^learn_victim_blaming2$"))
+        application.add_handler(CallbackQueryHandler(learn_rape_myths, pattern="^learn_rape_myths$"))
+        
+        # Story submission handler
+        application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_story))
 
-    # Main menu handlers
-    application.add_handler(CommandHandler('start', start))
-    application.add_handler(CommandHandler('myid', myid))
-    application.add_handler(CallbackQueryHandler(start, pattern='^start$'))
-    application.add_handler(CallbackQueryHandler(community, pattern='^community$'))
-    application.add_handler(CallbackQueryHandler(help, pattern='^help$'))
-    application.add_handler(CallbackQueryHandler(support, pattern='^support$'))
-    application.add_handler(CallbackQueryHandler(care, pattern='^care$'))
-    application.add_handler(CallbackQueryHandler(learn, pattern='^learn'))
-    application.add_handler(CallbackQueryHandler(feedback, pattern='^feedback$'))
-    
-    # Help menu handlers
-    application.add_handler(CallbackQueryHandler(emergency_police, pattern='^emergency_police$'))
-    application.add_handler(CallbackQueryHandler(emergency_sos, pattern='^emergency_sos$'))
-    application.add_handler(CallbackQueryHandler(helplines, pattern='^helplines$'))
-    
-    # Support menu handlers
-    application.add_handler(CallbackQueryHandler(support_counselling, pattern='^support_counselling$'))
-    application.add_handler(CallbackQueryHandler(support_legal, pattern='^support_legal$'))
-    application.add_handler(CallbackQueryHandler(support_legal_clinic, pattern='^support_legal_clinic$'))
-    application.add_handler(CallbackQueryHandler(support_legal_police, pattern='^support_legal_police$'))
-    application.add_handler(CallbackQueryHandler(support_legal_poha, pattern='^support_legal_poha$'))
-    application.add_handler(CallbackQueryHandler(support_legal_ppo, pattern='^support_legal_ppo$'))
-    application.add_handler(CallbackQueryHandler(support_legal_other, pattern='^support_legal_other$'))
-    
-    # Care menu handlers
-    application.add_handler(CallbackQueryHandler(care_story, pattern='^care_story$'))
-    application.add_handler(CallbackQueryHandler(care_story_another, pattern='^care_story_another$'))
-    application.add_handler(CallbackQueryHandler(care_support_groups, pattern='^care_support_groups$'))
-    application.add_handler(CallbackQueryHandler(care_tips, pattern='^care_tips$'))
-    application.add_handler(CallbackQueryHandler(care_journaling, pattern='^care_journaling$'))
-    application.add_handler(CallbackQueryHandler(care_journaling_prompts, pattern='^care_journaling_prompts$'))
-    application.add_handler(CallbackQueryHandler(care_grounding, pattern='^care_grounding$'))
-    application.add_handler(CallbackQueryHandler(care_letters, pattern='^care_letters$'))
-    application.add_handler(CallbackQueryHandler(care_younger_self, pattern='^care_younger_self$'))
+        # Message handler for both story and feedback submissions
+        application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
-    #learn and volunteer handlers
-    application.add_handler(CallbackQueryHandler(learn_tips, pattern="^learn_tips$"))
-    application.add_handler(CallbackQueryHandler(learn_tips2, pattern="^learn_tips2$"))
-    application.add_handler(CallbackQueryHandler(learn_tips3, pattern="^learn_tips3$"))
-    application.add_handler(CallbackQueryHandler(learn_tips4, pattern="^learn_tips4$"))
-    application.add_handler(CallbackQueryHandler(volunteer, pattern="^volunteer$"))
-    application.add_handler(CallbackQueryHandler(learn_sa, pattern="^learn_sa$"))
-    application.add_handler(CallbackQueryHandler(learn_sexual_assault, pattern="^learn_sexual_assault$"))
-    application.add_handler(CallbackQueryHandler(learn_sexual_grooming, pattern="^learn_sexual_grooming$"))
-    application.add_handler(CallbackQueryHandler(learn_sexual_grooming2, pattern="^learn_sexual_grooming2$"))
-    application.add_handler(CallbackQueryHandler(learn_sexual_grooming3, pattern="^learn_sexual_grooming3$"))
-    application.add_handler(CallbackQueryHandler(learn_consent, pattern="^learn_consent$"))
-    application.add_handler(CallbackQueryHandler(learn_consent2, pattern="^learn_consent2$"))
-    application.add_handler(CallbackQueryHandler(learn_consent3, pattern="^learn_consent3$"))
-    application.add_handler(CallbackQueryHandler(learn_victim_blaming, pattern="^learn_victim_blaming$"))
-    application.add_handler(CallbackQueryHandler(learn_victim_blaming2, pattern="^learn_victim_blaming2$"))
-    application.add_handler(CallbackQueryHandler(learn_rape_myths, pattern="^learn_rape_myths$"))
-    
-    # Story submission handler
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_story))
-
-    # Message handler for both story and feedback submissions
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
-
-    
-    print('Bot is running...') 
-    application.run_polling()
+        print('Bot is running...') 
+        application.run_polling()
+        
+    except Exception as e:
+        print(f"Error starting bot: {e}")
+        import traceback
+        traceback.print_exc()
 
 if __name__ == '__main__':
     main()
