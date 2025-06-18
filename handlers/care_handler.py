@@ -37,7 +37,6 @@ async def care_story(update: Update, context):
         "⚠️*Please type your story below in 1 message.* If you have multiple stories to share, you can click the button below after sharing each story."
     )
     keyboard = [
-        [InlineKeyboardButton("Share Another Story", callback_data='care_story_another')],
         back_button('care')
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
