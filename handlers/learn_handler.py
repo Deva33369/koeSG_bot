@@ -1,5 +1,7 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from handlers.utils import back_button, next_button
+from telegram.ext import ContextTypes
+
 
 async def learn(update: Update, context):
     text = (
@@ -91,41 +93,54 @@ async def learn_tips4(update: Update, context):
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
 
-async def volunteer(update: Update, context):
-    text = (
-        "💫 *Volunteer with KOE* 💫\n\n"
-        "Thank you for your interest in volunteering with KOE! This is our current volunteering opportunity:\n\n"
-        "*Calling Out For Volunteers!*\n\n"
-
-        "Date: 22nd March 2025, 7pm\n"
-        "Venue: 9 Raffles Place, Republic Plaza Tower 1 #02-01/02 Singapore, 048619\n\n"
-
-        "AWARE is organising a panel discussion and FGD to focus on nightlife safety and inclusivity in Singapore!\n\n" 
-
-        "What’s happening:\n\n"
-
-        "🎤 Panel Discussion: Hear from some folks who’ve made efforts to improve safety in the nightlife scene.\n\n"
-
-        "🎧 Listening Circles: Share your experiences, brainstorm ideas, and help shape the future of nightlife safety.\n\n"
-
-        "🤝 Connect & Collaborate: Meet others who are passionate about creating a safer, more vibrant nightlife community.\n\n"
-
-        "AWARE is looking for *volunteer notetakers* to support in this event! If you are interested to support AWARE and learn more about SG's nightlife, do reach out to us on Instagram and we will get back to you!\n\n"
-
-        "🌸 a KOE member will be there too if you would like a familiar face to volunteer with! feel free to bring a friend along and volunteer together as well! :)\n\n"
-        "For more volunteering opportunities, do keep a look out at our links below!"
-    )
+async def volunteer(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    try:
+        # Get the pinned message from @koetrial channel
+        channel_username = "@koetrial"
+        
+        # Get the chat object which includes pinned message
+        chat = await context.bot.get_chat(chat_id=channel_username)
+        
+        if hasattr(chat, 'pinned_message') and chat.pinned_message:
+            # Create keyboard with options
+            keyboard = [
+                [InlineKeyboardButton("Visit Our Channel", url="https://t.me/KOECO")],
+                [InlineKeyboardButton("Visit Our Instagram", url="https://www.instagram.com/koe.co_/")],
+                back_button('learn')
+            ]
+            reply_markup = InlineKeyboardMarkup(keyboard)
+            
+            # Forward the pinned message with buttons
+            await chat.pinned_message.forward(
+                chat_id=update.effective_chat.id,
+                reply_markup=reply_markup
+            )
+        else:
+            # No pinned message found - send fallback message
+            text = (
+                "💫 *Volunteer with KOE* 💫\n\n"
+                "Thank you for your interest in volunteering with us! We're always looking for passionate individuals to help make a difference.\n\n"
+                "Please check these links for current opportunities:"
+            )
+            keyboard = [
+                [InlineKeyboardButton("Visit Our Channel", url="https://t.me/KOECO")],
+                [InlineKeyboardButton("Visit Our Instagram", url="https://www.instagram.com/koe.co_/")],
+                back_button('learn')
+            ]
+            reply_markup = InlineKeyboardMarkup(keyboard)
+            await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
     
-    keyboard = [
-        [InlineKeyboardButton("Visit Our Channel", url="https://t.me/KOECO")],
-        [InlineKeyboardButton("Visit Our Instagram page", url="https://www.instagram.com/koe.co_/")],
-        back_button('learn')
-    ]
-    
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    
-    await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
-
+    except Exception as e:
+        print(f"Error in volunteer function: {e}")
+        # Fallback if any error occurs
+        text = "💫 *Volunteer with KOE* 💫\n\nThank you for your interest! Please check our channels for current opportunities."
+        keyboard = [
+            [InlineKeyboardButton("Visit Our Channel", url="https://t.me/KOECO")],
+            [InlineKeyboardButton("Visit Our Instagram", url="https://www.instagram.com/koe.co_/")],
+            back_button('learn')
+        ]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
 
 async def learn_sa(update: Update, context):
     text = (
@@ -178,7 +193,7 @@ async def learn_sexual_assault2(update: Update, context):
         "Sexual assault can leave physical and emotional scars that last a long time. Some victims find that emotional scars never go away. Some possible effects of sexual assault would be: \n\n"
         "*Shame:* thinking they are bad, wrong, dirty, or permanently flawed\n"
         "*Guilt:* blaming themselves for what happened\n"
-        "*Denying* or *minimizing* the assault as a coping strategy (eg, “It wasn't that bad.” “It only happened once.”)\n"
+        "*Denying* or *minimizing* the assault as a coping strategy (eg, \"It wasn't that bad.\" \"It only happened once.\")\n"
         "Struggling to set and reinforce *boundaries* due to the violation that occurred\n\n"
         "Read more [here](https://www.instagram.com/p/CeGFlTGhZ0p/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)"
         )
@@ -249,7 +264,7 @@ async def learn_consent(update: Update, context):
     text = (
         "🤝 *Consent* 🤝\n\n"
         "Consent is an agreement between participants to engage in sexual activity. It is volatile and can change at any point during the interaction between both parties. You can withdraw consent at any point in time if you feel uncomfortable.\n\n" 
-        "When you’re engaging in sexual activity, consent communication should happen *every* time for *every* type of activity. Consenting to one activity, at one time does not mean someone gives consent for other activities or for the same activity on other occasions (eg, kissing someone doesn’t give them permission to remove your clothes)\n\n"
+        "When you're engaging in sexual activity, consent communication should happen *every* time for *every* type of activity. Consenting to one activity, at one time does not mean someone gives consent for other activities or for the same activity on other occasions (eg, kissing someone doesn't give them permission to remove your clothes)\n\n"
         "*Click next to learn more*"
     )
     keyboard = [
@@ -375,7 +390,7 @@ async def care_journaling_prompts(update: Update, context):
     )
     keyboard = [back_button('care_journaling')]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    await update.callback_query.edit_message_text(trigger_warning + text, parse_mode='Markdown', reply_markup=reply_markup)
+    await update.callback_query.edit_message_text(text + trigger_warning, parse_mode='Markdown', reply_markup=reply_markup)
 
 async def care_younger_self(update: Update, context):
     trigger_warning = (

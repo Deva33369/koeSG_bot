@@ -33,9 +33,27 @@ async def care_story(update: Update, context):
         "we can allow others to share their voice, build their confidence as well as form a community of shared understanding and care for one another.\n\n"
         "*Note:* By sharing your story via this bot, you are consenting to KOE using this story for publicity purposes via our telegram channel or via instagram. "
         "Your identity and your story will remain anonymous even to the admin.\n\n"
-        "Please type your story below:"
+        "⚠️*Please type your story below in 1 message.* If you have multiple stories to share, you can click the button below after sharing each story."
     )
-    keyboard = [back_button('care')]
+    keyboard = [
+        [InlineKeyboardButton("Share Another Story", callback_data='care_story_another')],
+        back_button('care')
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
+    context.user_data['expecting_story'] = True
+
+async def care_story_another(update: Update, context):
+    """Handler for sharing another story"""
+    text = (
+        "📝 *Share Another Story* 📝\n\n"
+        "Thank you for sharing your previous story. If you have more stories to share, please type them below.\n\n"
+        "Each story will be sent separately to our team for review."
+    )
+    keyboard = [
+        [InlineKeyboardButton("Share Another Story", callback_data='care_story_another')],
+        back_button('care')
+    ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
     context.user_data['expecting_story'] = True
@@ -73,7 +91,13 @@ async def care_tips(update: Update, context):
         back_button('care')
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
+    
+    # Check if the current message has text content
+    try:
+        await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
+    except Exception as e:
+        # If editing fails (e.g., photo message), send a new message
+        await update.callback_query.message.reply_text(text, parse_mode='Markdown', reply_markup=reply_markup)
 
 async def care_journaling(update: Update, context):
     text = (
@@ -136,22 +160,30 @@ async def care_letters(update: Update, context):
         random_image = random.choice(encouragement_images)
         image_path = os.path.join(images_folder, random_image)
         
-        # Send the image with caption
-        with open(image_path, 'rb') as photo:
-            await update.callback_query.message.reply_photo(
-                photo=photo,
-                caption="💌 *Encouragement Letters* 💌\n\nHere are some letters from the public for survivors of sexual assault! We hope that these letters will serve as a reminder and as an encouragement, that we are here with you.",
-                parse_mode='Markdown'
-            )
+        # Create the caption with options
+        caption = (
+            "💌 *Encouragement Letters* 💌\n\n"
+            "Here are some letters from the public for survivors of sexual assault! "
+            "We hope that these letters will serve as a reminder and as an encouragement, that we are here with you.\n\n"
+            "💖 Here's an encouragement letter for you!"
+        )
         
-        # Edit the original message to show the button options
-        text = "💌 *Encouragement Letters* 💌\n\nHere's an encouragement letter for you! 💖"
+        # Create keyboard with options
         keyboard = [
             [InlineKeyboardButton("Send another letter", callback_data='care_letters')],
             back_button('care_tips')
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
-        await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
+        
+        # Send the image with caption and options all in one message
+        with open(image_path, 'rb') as photo:
+            await update.callback_query.message.reply_photo(
+                photo=photo,
+                caption=caption,
+                parse_mode='Markdown',
+                reply_markup=reply_markup
+            )
+        
     else:
         # Fallback if no images found
         text = (

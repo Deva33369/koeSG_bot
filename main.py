@@ -1,4 +1,4 @@
-from telegram import Update 
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.error import TelegramError
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters
 from config import TOKEN, ADMIN_ID
@@ -11,7 +11,7 @@ from handlers.support_handler import (
     support_legal_poha, support_legal_ppo, support_legal_other,
 )
 from handlers.care_handler import (
-    care, care_story, care_support_groups, care_tips, care_journaling,
+    care, care_story, care_story_another, care_support_groups, care_tips, care_journaling,
     care_journaling_prompts, care_grounding, care_letters, care_younger_self
 )
 
@@ -51,8 +51,18 @@ async def handle_story(update: Update, context):
                 parse_mode='Markdown'
             )
             print("Story successfully forwarded to admin")  # Debug log
+            
+            # Send confirmation message with option to share another story
+            keyboard = [
+                [InlineKeyboardButton("Share Another Story", callback_data='care_story_another')],
+                [InlineKeyboardButton("Back to Self-Care", callback_data='care')]
+            ]
+            reply_markup = InlineKeyboardMarkup(keyboard)
+            
             await update.message.reply_text(
-                "Thank you for sharing your story. It has been received anonymously and will be reviewed by our team."
+                "Thank you for sharing your story. It has been received anonymously and will be reviewed by our team.\n\n"
+                "If you have more stories to share, you can click the button below.",
+                reply_markup=reply_markup
             )
         except Exception as e:
             print(f"Error forwarding story to admin: {e}")  # Debug log
@@ -101,6 +111,7 @@ def main():
     
     # Care menu handlers
     application.add_handler(CallbackQueryHandler(care_story, pattern='^care_story$'))
+    application.add_handler(CallbackQueryHandler(care_story_another, pattern='^care_story_another$'))
     application.add_handler(CallbackQueryHandler(care_support_groups, pattern='^care_support_groups$'))
     application.add_handler(CallbackQueryHandler(care_tips, pattern='^care_tips$'))
     application.add_handler(CallbackQueryHandler(care_journaling, pattern='^care_journaling$'))
