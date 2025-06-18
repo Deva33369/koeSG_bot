@@ -80,17 +80,10 @@ async def handle_message(update: Update, context):
     elif context.user_data.get('expecting_feedback'):
         await handle_feedback(update, context)
 
-async def main():
+def main():
     try:
         # Initialize the application with error handling
         application = Application.builder().token(TOKEN).build()
-        
-        # Clear any existing webhook to prevent conflicts
-        try:
-            await application.bot.delete_webhook()
-            print("Webhook cleared successfully")
-        except Exception as e:
-            print(f"Error clearing webhook: {e}")
         
         # Main menu handlers
         application.add_handler(CommandHandler('start', start))
@@ -153,7 +146,7 @@ async def main():
         application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
         print('Bot is running...') 
-        await application.run_polling()
+        application.run_polling()
         
     except Exception as e:
         print(f"Error starting bot: {e}")
@@ -161,5 +154,4 @@ async def main():
         traceback.print_exc()
 
 if __name__ == '__main__':
-    import asyncio
-    asyncio.run(main())
+    main()
