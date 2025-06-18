@@ -1,6 +1,6 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.error import TelegramError
-from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, MessageHandler, Filters
+from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters
 from config import TOKEN, ADMIN_ID
 from handlers.start_handler import start
 from handlers.community_handler import community
@@ -14,6 +14,8 @@ from handlers.care_handler import (
     care, care_story, care_story_another, care_support_groups, care_tips, care_journaling,
     care_journaling_prompts, care_grounding, care_letters, care_younger_self
 )
+
+
 
 from handlers.learn_handler import (
     learn, learn_tips, learn_tips2, learn_tips3, learn_tips4,
