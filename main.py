@@ -6,14 +6,14 @@ from telegram.ext import Application, CommandHandler, CallbackQueryHandler, Mess
 from config import TOKEN, ADMIN_ID
 from handlers.start_handler import start
 from handlers.community_handler import community
-from handlers.help_handler import help, emergency_police, emergency_sos, helplines
+from handlers.help_handler import help, helplines
 from handlers.support_handler import (
     support, support_counselling, support_legal,
     support_legal_clinic, support_legal_police,
     support_legal_poha, support_legal_ppo, support_legal_other,
 )
 from handlers.care_handler import (
-    care, care_story, care_support_groups, care_tips, care_journaling,
+    care, care_story, care_tips, care_journaling,
     care_journaling_prompts, care_grounding, care_letters, care_younger_self
 )
 from handlers.learn_handler import (
@@ -92,8 +92,6 @@ def setup_handlers(application: Application):
     application.add_handler(CallbackQueryHandler(feedback, pattern='^feedback$'))
     
     # Help menu handlers
-    application.add_handler(CallbackQueryHandler(emergency_police, pattern='^emergency_police$'))
-    application.add_handler(CallbackQueryHandler(emergency_sos, pattern='^emergency_sos$'))
     application.add_handler(CallbackQueryHandler(helplines, pattern='^helplines$'))
     
     # Support menu handlers
@@ -107,7 +105,6 @@ def setup_handlers(application: Application):
     
     # Care menu handlers
     application.add_handler(CallbackQueryHandler(care_story, pattern='^care_story$'))
-    application.add_handler(CallbackQueryHandler(care_support_groups, pattern='^care_support_groups$'))
     application.add_handler(CallbackQueryHandler(care_tips, pattern='^care_tips$'))
     application.add_handler(CallbackQueryHandler(care_journaling, pattern='^care_journaling$'))
     application.add_handler(CallbackQueryHandler(care_journaling_prompts, pattern='^care_journaling_prompts$'))
