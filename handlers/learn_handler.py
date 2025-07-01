@@ -16,7 +16,6 @@ async def learn(update: Update, context):
     keyboard = [
         [InlineKeyboardButton("I want to know how to support survivors 🫂", callback_data='learn_tips')],
         [InlineKeyboardButton("I want to learn more about sexual assault 💡", callback_data='learn_sa')],
-        [InlineKeyboardButton("I want to volunteer 💯", callback_data='volunteer')],
         back_button()
     ]
 

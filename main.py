@@ -86,7 +86,9 @@ def setup_handlers(application: Application):
     application.add_handler(CallbackQueryHandler(help, pattern='^help$'))
     application.add_handler(CallbackQueryHandler(support, pattern='^support$'))
     application.add_handler(CallbackQueryHandler(care, pattern='^care$'))
-    application.add_handler(CallbackQueryHandler(learn, pattern='^learn'))
+    application.add_handler(CallbackQueryHandler(learn_tips, pattern="^learn_tips$"))
+    application.add_handler(CallbackQueryHandler(learn_sa, pattern="^learn_sa$"))
+    application.add_handler(CallbackQueryHandler(learn, pattern='^learn$'))
     application.add_handler(CallbackQueryHandler(feedback, pattern='^feedback$'))
     
     # Help menu handlers
@@ -114,11 +116,9 @@ def setup_handlers(application: Application):
     application.add_handler(CallbackQueryHandler(care_younger_self, pattern='^care_younger_self$'))
 
     # Learn and volunteer handlers
-    application.add_handler(CallbackQueryHandler(learn_tips, pattern="^learn_tips$"))
     application.add_handler(CallbackQueryHandler(learn_tips2, pattern="^learn_tips2$"))
     application.add_handler(CallbackQueryHandler(learn_tips3, pattern="^learn_tips3$"))
     application.add_handler(CallbackQueryHandler(learn_tips4, pattern="^learn_tips4$"))
-    application.add_handler(CallbackQueryHandler(learn_sa, pattern="^learn_sa$"))
     application.add_handler(CallbackQueryHandler(learn_sexual_assault, pattern="^learn_sexual_assault$"))
     application.add_handler(CallbackQueryHandler(learn_sexual_grooming, pattern="^learn_sexual_grooming$"))
     application.add_handler(CallbackQueryHandler(learn_sexual_grooming2, pattern="^learn_sexual_grooming2$"))
