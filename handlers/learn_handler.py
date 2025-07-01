@@ -5,16 +5,12 @@ from telegram.ext import ContextTypes
 
 async def learn(update: Update, context):
     text = (
-        "📢 *Learn & Volunteer* 📢\n\n"
+        "📢 *Learn* 📢\n\n"
         "Welcome to our educational and volunteering hub! Here, you can:\n\n"
         "🎓 *Learn More*\n"
         "- Understand how to support survivors\n"
         "- Learn about consent and sexual assault\n"
         "- Educate yourself about common misconceptions\n\n"
-        "🤝 *Volunteer With Us*\n"
-        "- Join our community initiatives\n"
-        "- Help create awareness\n"
-        "- Make a difference in survivors' lives\n\n"
         "Choose an option below to get started:"
     )
     keyboard = [
@@ -25,7 +21,10 @@ async def learn(update: Update, context):
     ]
 
     reply_markup = InlineKeyboardMarkup(keyboard)
-    await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
+    if update.callback_query:
+        await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
+    else:
+        await update.message.reply_text(text, parse_mode='Markdown', reply_markup=reply_markup)
 
 async def learn_tips(update: Update, context):
     text = (
@@ -93,103 +92,6 @@ async def learn_tips4(update: Update, context):
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
 
-async def volunteer(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    try:
-        # Get the pinned message from @koetrial channel
-        channel_username = "@koetrial"
-        
-        print(f"Attempting to access channel: {channel_username}")
-        
-        # Get the chat object
-        chat = await context.bot.get_chat(chat_id=channel_username)
-        print(f"Successfully accessed channel: {chat.title}")
-        print(f"Channel ID: {chat.id}")
-        print(f"Channel type: {chat.type}")
-        
-        # Get pinned messages using the correct method
-        try:
-            pinned_messages = await context.bot.get_chat(chat_id=channel_username)
-            print(f"Chat object: {pinned_messages}")
-            
-            # Try to access pinned_message attribute
-            if hasattr(pinned_messages, 'pinned_message') and pinned_messages.pinned_message:
-                print(f"Found pinned message: {pinned_messages.pinned_message.text[:100]}...")
-                
-                # Forward the pinned message
-                await pinned_messages.pinned_message.forward(chat_id=update.effective_chat.id)
-                
-                # Send buttons separately
-                keyboard = [
-                    [InlineKeyboardButton("Visit Our Channel", url="https://t.me/KOECO")],
-                    [InlineKeyboardButton("Visit Our Instagram", url="https://www.instagram.com/koe.co_/")],
-                    back_button('learn')
-                ]
-                reply_markup = InlineKeyboardMarkup(keyboard)
-                
-                await context.bot.send_message(
-                    chat_id=update.effective_chat.id,
-                    text="💫 *Volunteer with KOE* 💫\n\nCheck out the pinned message above and visit our channels for more information!",
-                    parse_mode='Markdown',
-                    reply_markup=reply_markup
-                )
-            else:
-                print("No pinned message found in chat object")
-                # Try alternative method to get pinned messages
-                try:
-                    # Get recent messages and look for pinned ones
-                    messages = await context.bot.get_chat_history(chat_id=channel_username, limit=10)
-                    pinned_found = False
-                    
-                    for message in messages:
-                        if message.is_automatic_forward:
-                            #print(f"Found forwarded message: {message.text[:100]}...")
-                            await message.forward(chat_id=update.effective_chat.id)
-                            pinned_found = True
-                            break
-                    
-                    if not pinned_found:
-                        # Forward the latest message as fallback
-                        if messages:
-                            latest_message = messages[0]
-                            #print(f"Forwarding latest message: {latest_message.text[:100]}...")
-                            await latest_message.forward(chat_id=update.effective_chat.id)
-                        else:
-                            raise Exception("No messages found in channel")
-                    
-                    # Send buttons
-                    keyboard = [
-                        [InlineKeyboardButton("Visit Our Channel", url="https://t.me/KOECO")],
-                        [InlineKeyboardButton("Visit Our Instagram", url="https://www.instagram.com/koe.co_/")],
-                        back_button('learn')
-                    ]
-                    reply_markup = InlineKeyboardMarkup(keyboard)
-                    
-                    await context.bot.send_message(
-                        chat_id=update.effective_chat.id,
-                        text="💫 *Volunteer with KOE* 💫\n\nCheck out the message above and visit our channels for more information!",
-                        parse_mode='Markdown',
-                        reply_markup=reply_markup
-                    )
-                    
-                except Exception as e:
-                    print(f"Error getting channel history: {e}")
-                    raise e
-                    
-        except Exception as e:
-            print(f"Error accessing pinned messages: {e}")
-            raise e
-    
-    except Exception as e:
-        print(f"Error in volunteer function: {e}")
-        # Fallback if any error occurs
-        text = "💫 *Volunteer with KOE* 💫\n\nThank you for your interest! Please check our channels for current opportunities."
-        keyboard = [
-            [InlineKeyboardButton("Visit Our Channel", url="https://t.me/KOECO")],
-            [InlineKeyboardButton("Visit Our Instagram", url="https://www.instagram.com/koe.co_/")],
-            back_button('learn')
-        ]
-        reply_markup = InlineKeyboardMarkup(keyboard)
-        await update.callback_query.edit_message_text(text, parse_mode='Markdown', reply_markup=reply_markup)
 
 async def learn_sa(update: Update, context):
     text = (

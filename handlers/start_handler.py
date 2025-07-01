@@ -7,7 +7,7 @@ async def start(update: Update, context):
         [InlineKeyboardButton("I Need Help (Crisis & Reporting)", callback_data='help')],
         [InlineKeyboardButton("Support & Resources", callback_data='support')],
         [InlineKeyboardButton("Self-Care & Healing", callback_data='care')],
-        [InlineKeyboardButton("Learn & Volunteer", callback_data='learn_and_volunteer')],
+        [InlineKeyboardButton("Learn", callback_data='learn')],
         [InlineKeyboardButton("Have some feedback?", callback_data='feedback')]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -26,5 +26,5 @@ async def start(update: Update, context):
     if update.message:
         await update.message.reply_text(intro_text + trigger_warning, parse_mode='Markdown')
         await update.message.reply_text("Please choose an option below:", reply_markup=reply_markup)
-    else:
+    elif hasattr(update, 'callback_query') and update.callback_query is not None:
         await update.callback_query.edit_message_text("Please choose an option below:", reply_markup=reply_markup)

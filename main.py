@@ -18,7 +18,7 @@ from handlers.care_handler import (
 )
 from handlers.learn_handler import (
     learn, learn_tips, learn_tips2, learn_tips3, learn_tips4,
-    volunteer, learn_sa, learn_sexual_assault, learn_sexual_grooming,
+    learn_sa, learn_sexual_assault, learn_sexual_grooming,
     learn_sexual_grooming2, learn_sexual_grooming3, learn_consent,
     learn_consent2, learn_consent3, learn_victim_blaming,
     learn_victim_blaming2, learn_rape_myths
@@ -27,20 +27,24 @@ from handlers.feedback_handler import feedback, handle_feedback
 
 async def myid(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Command handler to show the user's Telegram ID"""
-    user_id = update.effective_user.id
-    await update.message.reply_text(
-        f"Your Telegram ID is: `{user_id}`\n\n"
-        "If you are the admin, please copy this ID and update it in the config.py file.",
-        parse_mode='Markdown'
-    )
+    if update.effective_user is not None and update.message is not None:
+        user_id = update.effective_user.id
+        await update.message.reply_text(
+            f"Your Telegram ID is: `{user_id}`\n\n"
+            "If you are the admin, please copy this ID and update it in the config.py file.",
+            parse_mode='Markdown'
+        )
 
 async def handle_story(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if context.user_data.get('expecting_story'):
+    if context.user_data is not None and context.user_data.get('expecting_story'):
         # Forward the story to admin
+        # Safely get user ID and message text, handling possible None values
+        user_id = update.effective_user.id if update.effective_user else "Unknown"
+        message_text = update.message.text if update.message else "(No message text)"
         story_text = (
             "📨 *New Story Submission* 📨\n\n"
-            f"From User ID: `{update.effective_user.id}`\n"
-            f"Story:\n{update.message.text}"
+            f"From User ID: `{user_id}`\n"
+            f"Story:\n{message_text}"
         )
         try:
             print(f"Attempting to forward story to admin ID: {ADMIN_ID}")
@@ -50,23 +54,26 @@ async def handle_story(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 parse_mode='Markdown'
             )
             print("Story successfully forwarded to admin")
-            await update.message.reply_text(
-                "Thank you for sharing your story. It has been received anonymously and will be reviewed by our team."
-            )
+            if update.message is not None:
+                await update.message.reply_text(
+                    "Thank you for sharing your story. It has been received anonymously and will be reviewed by our team."
+                )
         except Exception as e:
             print(f"Error forwarding story to admin: {e}")
             print(f"Admin ID being used: {ADMIN_ID}")
-            print(f"Story content: {update.message.text}")
-            await update.message.reply_text(
-                "We're sorry, but there was an error sending your story. Please try again later."
-            )
-        context.user_data['expecting_story'] = False
+            message_text = update.message.text if update.message else "(No message text)"
+            print(f"Story content: {message_text}")
+            if update.message is not None:
+                await update.message.reply_text(
+                    "We're sorry, but there was an error sending your story. Please try again later."
+                )
+            context.user_data['expecting_story'] = False
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle both story and feedback submissions based on user state"""
-    if context.user_data.get('expecting_story'):
+    if context.user_data is not None and context.user_data.get('expecting_story'):
         await handle_story(update, context)
-    elif context.user_data.get('expecting_feedback'):
+    elif context.user_data is not None and context.user_data.get('expecting_feedback'):
         await handle_feedback(update, context)
 
 def setup_handlers(application: Application):
@@ -111,7 +118,6 @@ def setup_handlers(application: Application):
     application.add_handler(CallbackQueryHandler(learn_tips2, pattern="^learn_tips2$"))
     application.add_handler(CallbackQueryHandler(learn_tips3, pattern="^learn_tips3$"))
     application.add_handler(CallbackQueryHandler(learn_tips4, pattern="^learn_tips4$"))
-    application.add_handler(CallbackQueryHandler(volunteer, pattern="^volunteer$"))
     application.add_handler(CallbackQueryHandler(learn_sa, pattern="^learn_sa$"))
     application.add_handler(CallbackQueryHandler(learn_sexual_assault, pattern="^learn_sexual_assault$"))
     application.add_handler(CallbackQueryHandler(learn_sexual_grooming, pattern="^learn_sexual_grooming$"))
