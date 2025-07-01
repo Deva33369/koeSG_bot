@@ -18,7 +18,7 @@ async def care(update: Update, context):
         [InlineKeyboardButton("Support Groups", callback_data='care_support_groups')],
         [InlineKeyboardButton("Self Care Tips", callback_data='care_tips')],
         [InlineKeyboardButton("Other Support & Resources", callback_data='support')],
-        [InlineKeyboardButton("Helplines", callback_data='care_helplines')],
+        [InlineKeyboardButton("Helplines", callback_data='helplines')],
         back_button()
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
