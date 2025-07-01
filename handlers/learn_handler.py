@@ -5,13 +5,8 @@ from telegram.ext import ContextTypes
 
 async def learn(update: Update, context):
     text = (
-        "📢 *Learn* 📢\n\n"
-        "Welcome to our educational and volunteering hub! Here, you can:\n\n"
-        "🎓 *Learn More*\n"
-        "- Understand how to support survivors\n"
-        "- Learn about consent and sexual assault\n"
-        "- Educate yourself about common misconceptions\n\n"
-        "Choose an option below to get started:"
+        "🦋 *Learn* 🦋\n\n"
+        "Interested to find out more about how you can support sexual assault survivors? Share with us what you are looking for and we will share ways for you to continue helping survivors in need!"
     )
     keyboard = [
         [InlineKeyboardButton("I want to know how to support survivors 🫂", callback_data='learn_tips')],

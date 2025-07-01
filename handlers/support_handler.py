@@ -3,9 +3,8 @@ from handlers.utils import back_button
 
 async def support(update: Update, context):
     text = (
-        "📚 *Support & Resources* 📚\n\n"
-        "I'm proud of you for taking the step to support yourself better 💛\n"
-        "Which type of support do you need?"
+        "🌷 Support & Resources 🌷\n\n"
+        "Resources can get overwhelming and sometimes tough to find. We hope to provide a consolidated area for you to find the best support you might require! What type of resources are you looking for?"
     )
     keyboard = [
         [InlineKeyboardButton("🧠 Counselling Resources", callback_data='support_counselling')],
@@ -17,32 +16,30 @@ async def support(update: Update, context):
 
 async def support_counselling(update: Update, context):
     text = (
-        "🧠 *Counselling Support* 🧠\n\n"
-    "Many sexual assault survivors often find it helpful to talk to a counsellor. "
-    "You don’t need to fix anything — sometimes it’s about taking the step to learn to be kinder to yourself, "
-    "or to just talk about what happened instead of keeping it in. We hope these support systems can allow you to flourish.\n\n"
+        "❤️‍🩹 Counselling Support ❤️‍🩹\n\n"
+        "Many sexual assault survivors often find it helpful to talk to a counsellor. You don’t need to fix anything — sometimes it’s about taking the step to learn to be kinder to yourself, or to just talk about what happened instead of keeping it in. We hope these support systems can allow you to flourish.\n\n"
 
-    "📌 *Note:* Many of these services are provided mainly in English. We highly recommend bringing an English-speaking friend or family member to help with translation. "
-    "If not, feel free to reach out to the *National Anti-Violence & Sexual Harassment Hotline* at *1800 777 0000* (24/7, available in English, Mandarin, Malay, and Tamil).\n\n"
+        "📌 Note: Many of these services are provided mainly in English. We highly recommend bringing an English-speaking friend or family member to help with translation. If not, feel free to reach out to the National Anti-Violence & Sexual Harassment Hotline at <code>1800 777 0000</code> (24/7, available in English, Mandarin, Malay, and Tamil).\n\n"
 
-    "🟣 *For any Sexual Assault Related Counselling Matters*\n"
-    "*AWARE*: AWARE’s counsellors have the experience and sensitivity needed to support sexual assault victims. "
-    "All support is provided on a strictly confidential basis.\n\n"
+        "For any Sexual Assault Related Counselling Matters\n"
+        "AWARE’s counsellors have the experience and sensitivity needed to support sexual assault victims. All support is provided on a strictly confidential basis.\n\n"
 
-    "💰 *Counselling Fees*:\n"
-    "• Not working / salary < $3,000: Flat fee of $35 per session\n"
-    "• Salary ≥ $3,000: 2% of monthly salary per session\n\n"
-    "📅 Each session is 1 hour long, by appointment only.\n"
-    "📍 Held at AWARE Centre or via Zoom (Mon–Fri, 10 a.m. – 8 p.m., last appointment at 7 p.m.)\n"
-    "📞 *Call 6779 0282* (Helpline: Mon–Fri, 10 a.m. – 6 p.m.)\n"
-    "💬 Online chat service: Mon–Fri, 10 a.m. – 4:30 p.m.\n"
-    "📧 Email: *sacc@aware.org.sg* (Monitored every few hours)\n\n"
+        "• Each session is 1 hour long, by appointment only.\n"
+        "• Held at AWARE Centre or via Zoom (Mon–Fri, 10 a.m. – 8 p.m., last appointment at 7 p.m.)\n"
+        "• Call <code>6779 0282</code> (Helpline: Mon–Fri, 10 a.m. – 6 p.m.)\n"
+        "• Online chat service: Mon–Fri, 10 a.m. – 4:30 p.m.\n"
+        "• Email: <code>sacc@aware.org.sg</code> (Monitored every few hours)\n\n"
 
-    "🟡 *For Online Sexual Assault/Harassment Related Matters*\n"
-    "*SCWO*: Counsellors trained in trauma-informed care provide *free* counselling sessions for victims or survivors of online harm.\n\n"
-    "📅 Available: Mon–Fri, 9 a.m. – 6 p.m.\n"
-    "📞 Call: *8001 01 4616*\n"
-    "📱 WhatsApp: *6571 4400*"
+        "Counselling Fees:\n"
+        "• Not working / salary < $3,000: Flat fee of $35 per session\n"
+        "• Salary ≥ $3,000: 2% of monthly salary per session\n\n"
+
+        "For Online Sexual Assault/Harassment Related Matters\n"
+        "Singapore Council of Women’s Organisations (SCWO)'s counsellors are trained in trauma-informed care and provides free counselling sessions for victims or survivors of online harm.\n\n"
+
+        "• Available: Mon–Fri, 9 a.m. – 6 p.m.\n"
+        "• Call: <code>8001 01 4616</code>\n"
+        "• WhatsApp: <code>6571 4400</code>\n\n"
     )
     keyboard = [
         [InlineKeyboardButton("🔙 Back to Support & Resources Menu", callback_data='support')],
@@ -53,22 +50,21 @@ async def support_counselling(update: Update, context):
 
 async def support_legal(update: Update, context):
     text = (
-        "⚖️ *Legal Assistance & Reporting* ⚖️\n\n"
-    "Taking the step towards reporting and getting involved in the law can be daunting. "
-    "I’m proud of you for taking this step and finding ways for you to get justice. "
-    "These are the legal resources available — feel free to explore and let us know your preference.\n\n"
+        
+        "🤎 Legal Assistance & Reporting 🤎\n\n"
 
-    "📚 *Legal Clinics*\n"
-    "Volunteer lawyers provide *free legal assistance* at legal clinics. They can give general legal advice on your case, "
-    "explain your options, and support you throughout the legal process.\n\n"
+        "Taking the step towards reporting and getting involved in the law can be daunting. I’m proud of you for taking this step and finding ways for you to get justice. These are the legal resources available — feel free to explore and let us know your preference.\n\n"
 
-    "⚖️ *Criminal Proceedings*\n"
-    "• *Making a Police Report* — To initiate a criminal investigation and formal proceedings.\n"
-    "• *Protection from Harassment Act Order (POHA)* — For physical or non-physical sexual harassment.\n"
-    "  → If you're experiencing harassment or stalking, POHA allows you to apply for *protection orders* or *non-publication orders*.\n"
-    "• *Personal Protection Order (PPO)* — For physical or non-physical sexual assault/harassment *by a family member only*.\n\n"
+        "Legal Clinics\n"
+        "Volunteer lawyers provide free legal assistance at legal clinics. They can give general legal advice on your case, explain your options, and support you throughout the legal process.\n\n"
 
-    "📌 *Other Complaints* — Additional legal avenues are available depending on your situation."
+        "Criminal Proceedings\n"
+        "• Making a Police Report: To initiate a criminal investigation and formal proceedings.\n"
+        "• Protection from Harassment Act Order (POHA): For physical or non-physical sexual harassment.\n"
+        "  → If you're experiencing harassment or stalking, POHA allows you to apply for protection orders or non-publication orders.\n"
+        "• Personal Protection Order (PPO): For physical or non-physical sexual assault/harassment by a family member only.\n\n"
+
+        "📌 Other Complaints — Additional legal avenues are available depending on your situation."
     )
     keyboard = [
         [InlineKeyboardButton("📑 Legal Clinics", callback_data='support_legal_clinic')],
@@ -84,13 +80,18 @@ async def support_legal(update: Update, context):
 
 async def support_legal_clinic(update: Update, context):
     text = (
-        "📑 *Legal Clinics* 📑\n\n"
-    "[SACC](https://sacc.aware.org.sg/get-help/legal-information/)'s legal clinic offers a one-time *30-minute session* where SACC’s volunteer lawyers can provide general legal information on your case and share about the options available to you. "
-    "They are open to survivors of all genders, and the legal clinic is reserved for clients who do not already have legal representation on the same matter. *(English-speaking only)*\n\n"
-    
-    "[SCWO](https://www.scwo.org.sg/what-we-do/services/shecaresscwo/): Legal volunteers from Pro Bono SG will offer free legal assistance at legal clinics. "
-    "Every *1st and 3rd Wednesday* of the Month, *7 pm - 9 pm*. "
-    "(Call: *8001 01 4616* | WhatsApp: *6571 4400* to book an appointment)"
+        "💼 Legal Clinics 💼\n\n"
+
+        "Sexual Assault Care Centre\n"
+        "[SACC](https://sacc.aware.org.sg/get-help/legal-information/)'s legal clinic offers a one-time 30-minute session where SACC’s volunteer lawyers can provide general legal information on your case and share about the options available to you. They are open to survivors of all genders, and the legal clinic is reserved for clients who do not already have legal representation on the same matter. (English-speaking only)\n\n"
+        "• Call: <code>6779 0282</code>\n"
+        "• Email: <code>sacc@aware.org.sg</code>\n"
+        "• Book an [online appointment](https://sacc.aware.org.sg/sacc-online-chat-service/)\n\n"
+
+        "Singapore Council of Women’s Organisations\n"
+        "[SCWO](https://www.scwo.org.sg/what-we-do/services/shecaresscwo/): Legal volunteers from Pro Bono SG will offer a free 30 minutes legal assistance session at legal clinics. Every 1st and 3rd Wednesday of the Month, 7 pm - 9 pm. \n"
+        "• Call: <code>8001 01 4616</code>\n"
+        "• WhatsApp: <code>6571 4400</code>\n"
     )
     keyboard = [
         [InlineKeyboardButton("🔙 Back to Legal Options", callback_data='support_legal')],
@@ -174,7 +175,7 @@ async def support_legal_ppo(update: Update, context):
 
 async def support_legal_other(update: Update, context):
     text = (
-        "📬 *Other Legal Complaints* 📬\n\n"
+        "📝 *Other Legal Complaints* 📝\n\n"
         "You may also wish to explore:\n\n"
         "• *Protection for Persons with Mental Disabilities Act (PPMDA)*\n"
         "• *Workplace harassment reporting (via HR or MOM)*\n"

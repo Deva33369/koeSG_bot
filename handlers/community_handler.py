@@ -3,13 +3,9 @@ from handlers.utils import back_button
 
 async def community(update: Update, context):
     text = (
-        "🌟 *Join our Community!* 🌟\n\n"
-        "Connect with survivors and allies in a safe, moderated space.\n"
-        "- [Public Awareness Channel](https://t.me/KOECO) (Updates/resources)\n\n"
-        "Rules:\n"
-        "1. Respect anonymity.\n"
-        "2. No victim-blaming.\n"
-        "3. Trigger warnings for sensitive content."
+        "🌟 Join our Community! 🌟"
+        "Stay updated on KOE happenings and sexual assault news in Singapore via our [Telegram Channel](https://t.me/KOECO)\n\n"
+        "Check out our [Link Tree](http://linkt.ree/koe.co_/) for our socials and website!"
     )
     keyboard = [back_button()]
     reply_markup = InlineKeyboardMarkup(keyboard)
