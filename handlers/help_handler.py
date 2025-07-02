@@ -3,7 +3,7 @@ from handlers.utils import back_button
 
 async def help(update: Update, context):
     text = (
-        "🚨 I Need Help (Reporting & Helplines) 🚨\n\n"
+        "🚨 *I Need Help (Reporting & Helplines)* 🚨\n\n"
         "Please contact:\n\n"
         "The Police at 999: If a sexual assault/harassment case is currently/has just happened and you would like to report it immediately. \n\n"
         "SOS at 18002214444: If you have thoughts of hurting yourself or those around you.\n\n"
@@ -18,7 +18,7 @@ async def help(update: Update, context):
 
 async def helplines(update: Update, context):
     text = (
-        "🫶 <b>Helplines & Support Services</b> 🫶\n\n"
+        "🫶 *Helplines & Support Services* 🫶\n\n"
         "Hello! Thank you for reaching out! KOE hopes to support you in any way possible. "
         "Below are some helplines you could reach out to depending on your needs and preference.\n\n"
         "<b>For Sexual Assault Related Matters (All Genders):</b>\n"

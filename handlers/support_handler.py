@@ -3,7 +3,7 @@ from handlers.utils import back_button
 
 async def support(update: Update, context):
     text = (
-        "🌷 Support & Resources 🌷\n\n"
+        "🌷 *Support & Resources* 🌷\n\n"
         "Resources can get overwhelming and sometimes tough to find. We hope to provide a consolidated area for you to find the best support you might require! What type of resources are you looking for?"
     )
     keyboard = [
@@ -16,7 +16,7 @@ async def support(update: Update, context):
 
 async def support_counselling(update: Update, context):
     text = (
-        "❤️‍🩹 Counselling Support ❤️‍🩹\n\n"
+        "❤️‍🩹 *Counselling Support* ❤️‍🩹\n\n"
         "Many sexual assault survivors often find it helpful to talk to a counsellor. You don’t need to fix anything — sometimes it’s about taking the step to learn to be kinder to yourself, or to just talk about what happened instead of keeping it in. We hope these support systems can allow you to flourish.\n\n"
 
         "📌 Note: Many of these services are provided mainly in English. We highly recommend bringing an English-speaking friend or family member to help with translation. If not, feel free to reach out to the National Anti-Violence & Sexual Harassment Hotline at <code>1800 777 0000</code> (24/7, available in English, Mandarin, Malay, and Tamil).\n\n"
@@ -51,7 +51,7 @@ async def support_counselling(update: Update, context):
 async def support_legal(update: Update, context):
     text = (
         
-        "🤎 Legal Assistance & Reporting 🤎\n\n"
+        "🤎 *Legal Assistance & Reporting* 🤎\n\n"
 
         "Taking the step towards reporting and getting involved in the law can be daunting. I’m proud of you for taking this step and finding ways for you to get justice. These are the legal resources available — feel free to explore and let us know your preference.\n\n"
 
@@ -80,7 +80,7 @@ async def support_legal(update: Update, context):
 
 async def support_legal_clinic(update: Update, context):
     text = (
-        "💼 Legal Clinics 💼\n\n"
+        "💼 *Legal Clinics* 💼\n\n"
 
         "Sexual Assault Care Centre\n"
         "[SACC](https://sacc.aware.org.sg/get-help/legal-information/)'s legal clinic offers a one-time 30-minute session where SACC’s volunteer lawyers can provide general legal information on your case and share about the options available to you. They are open to survivors of all genders, and the legal clinic is reserved for clients who do not already have legal representation on the same matter. (English-speaking only)\n\n"
@@ -102,7 +102,7 @@ async def support_legal_clinic(update: Update, context):
 
 async def support_legal_police(update: Update, context):
     text = (
-        "🚔 *Making a Police Report* 🚔\n\n"
+    "🚔 *Making a Police Report* 🚔\n\n"
     "*Making a police report can be daunting* for many and the process can also be extremely difficult as you are required to “relive” or constantly retell what has happened to you. "
     "It can be traumatic but it’s a form of justice for you as well.\n\n"
     "We hope to prepare you mentally for what’s to come and to share the support provided for you during this process.\n\n"
