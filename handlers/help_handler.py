@@ -5,8 +5,8 @@ async def help(update: Update, context):
     text = (
         "🚨 I Need Help (Reporting & Helplines) 🚨\n\n"
         "Please contact:\n\n"
-        "The Police at <code>999</code>: If a sexual assault/harassment case is currently/has just happened and you would like to report it immediately. \n\n"
-        "SOS at <code>18002214444</code>: If you have thoughts of hurting yourself or those around you.\n\n"
+        "The Police at 999: If a sexual assault/harassment case is currently/has just happened and you would like to report it immediately. \n\n"
+        "SOS at 18002214444: If you have thoughts of hurting yourself or those around you.\n\n"
         "You are not alone, and help is available 🤍. Please find a safe space, stay on the line and follow their instructions."
     )
     keyboard = [
