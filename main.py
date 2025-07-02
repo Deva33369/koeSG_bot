@@ -71,10 +71,10 @@ async def handle_story(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle both story and feedback submissions based on user state"""
-    if context.user_data is not None and context.user_data.get('expecting_story'):
-        await handle_story(update, context)
-    elif context.user_data is not None and context.user_data.get('expecting_feedback'):
+    if context.user_data is not None and context.user_data.get('expecting_feedback'):
         await handle_feedback(update, context)
+    elif context.user_data is not None and context.user_data.get('expecting_story'):
+        await handle_story(update, context)
 
 def setup_handlers(application: Application):
     """Configure all handlers"""
