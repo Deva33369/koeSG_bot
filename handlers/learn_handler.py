@@ -112,13 +112,13 @@ async def learn_sa(update: Update, context):
 
 async def learn_sexual_assault(update: Update, context):
     text = (
-        "⛔ *Sexual Assault* ⛔\n\n"
+        "❕ *Sexual Assault* ❕\n\n"
         "Sexual assault can include:\n\n"
-        "🔹 Any penetration without consent (e.g. vaginal, oral or anal), using any part of the body (penis, fingers) or object.\n"
-        "🔹 Any unwanted sexual touching, stroking, kissing, groping, etc.\n"
+        "🔹 Any penetration *without* consent (e.g. vaginal, oral or anal), using any part of the body (penis, fingers) or object.\n"
+        "🔹 Any *unwanted* sexual touching, stroking, kissing, groping, etc.\n"
         "🔹 Unwanted sexual requests, messages or gestures, including electronically, in the workplace or elsewhere.\n"
-        "🔹 Being made to view pornography against your will.\n"
-        "🔹 Unwanted taking and/or sharing of nude or intimate photographs or videos, e.g. upskirting.\n\n"
+        "🔹 Being made to view pornography *against* your will.\n"
+        "🔹 *Unwanted* taking and/or sharing of nude or intimate photographs or videos, e.g. upskirting.\n\n"
         "*If you feel like you or any of your loved ones have experienced something similar, you can find support by clicking on the button below*"
     )
    
