@@ -51,7 +51,7 @@ async def support_counselling(update: Update, context):
 async def support_legal(update: Update, context):
     text = (
         
-        "🤎 *Legal Assistance & Reporting* 🤎\n\n"
+        "💼  *Legal Assistance & Reporting* 💼 \n\n"
 
         "Taking the step towards reporting and getting involved in the law can be daunting. I’m proud of you for taking this step and finding ways for you to get justice. These are the legal resources available — feel free to explore and let us know your preference.\n\n"
 
@@ -80,18 +80,18 @@ async def support_legal(update: Update, context):
 
 async def support_legal_clinic(update: Update, context):
     text = (
-        "🤎 *Legal Clinics* 🤎\n\n"
+        "💼  *Legal Clinics* 💼 \n\n"
 
         "Sexual Assault Care Centre\n"
-        "[SACC](https://sacc.aware.org.sg/get-help/legal-information/)'s legal clinic offers a one-time 30-minute session where SACC’s volunteer lawyers can provide general legal information on your case and share about the options available to you. They are open to survivors of all genders, and the legal clinic is reserved for clients who do not already have legal representation on the same matter. (English-speaking only)\n\n"
-        "• Call: 6779 0282\n"
-        "• Email: sacc@aware.org.sg\n"
-        "• Book an [online appointment](https://sacc.aware.org.sg/sacc-online-chat-service/)\n\n"
+    "SACC's legal clinic offers a one-time 30-minute session where SACC’s volunteer lawyers can provide general legal information on your case and share about the options available to you. They are open to survivors of all genders, and the legal clinic is reserved for clients who do not already have legal representation on the same matter. (English-speaking only)\n\n"
+    "• Call: 6779 0282\n"
+    "• Email: sacc@aware.org.sg\n"
+    "• Book an online appointment: sacc[dot]aware[dot]org[dot]sg/sacc-online-chat-service\n\n"
 
-        "Singapore Council of Women’s Organisations\n"
-        "[SCWO](https://www.scwo.org.sg/what-we-do/services/shecaresscwo/): Legal volunteers from Pro Bono SG will offer a free 30 minutes legal assistance session at legal clinics. Every 1st and 3rd Wednesday of the Month, 7 pm - 9 pm. \n"
-        "• Call: 8001 01 4616\n"
-        "• WhatsApp: 6571 4400\n"
+    "Singapore Council of Women’s Organisations\n"
+    "SHECares@SCWO: Legal volunteers from Pro Bono SG will offer a free 30 minutes legal assistance session at legal clinics. Every 1st and 3rd Wednesday of the Month, 7 pm - 9 pm.\n"
+    "• Call: 8001 01 4616\n"
+    "• WhatsApp: 6571 4400"
     )
     keyboard = [
         [InlineKeyboardButton("🔙 Back to Legal Options", callback_data='support_legal')],
@@ -161,10 +161,10 @@ async def support_legal_poha(update: Update, context):
 async def support_legal_ppo(update: Update, context):
     text = (
         "🛡 *Personal Protection Order (PPO)* 🛡\n\n"
-        "If you're experiencing family violence, you can seek help and apply for a PPO.\n\n"
-        "🔹 Learn more and get guidance via [AWARE's PPO Information Page](https://www.aware.org.sg/information/dealing-with-family-violence/getting-a-personal-protection-order/)\n"
-        "🔹 You can also get counselling or mediation\n"
-        "🔹 Assistance available through AWARE or Family Service Centres"
+    "If you're experiencing family violence, you can seek help and apply for a PPO.\n\n"
+    "🔹 Learn more and get guidance via AWARE's PPO Information Page: aware[dot]org[dot]sg/information/dealing-with-family-violence/getting-a-personal-protection-order\n"
+    "🔹 You can also get counselling or mediation\n"
+    "🔹 Assistance available through AWARE or Family Service Centres"
     )
     keyboard = [
         [InlineKeyboardButton("🔙 Back to Legal Options", callback_data='support_legal')],
