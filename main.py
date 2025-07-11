@@ -18,7 +18,7 @@ from handlers.care_handler import (
 )
 from handlers.learn_handler import (
     learn, learn_tips, learn_tips2, learn_tips3, learn_tips4,
-    learn_sa, learn_sexual_assault, learn_sexual_assault2,learn_sexual_grooming,
+    learn_sa, learn_sexual_assault, learn_sexual_assault2, learn_sexual_grooming,
     learn_sexual_grooming2, learn_sexual_grooming3, learn_consent,
     learn_consent2, learn_consent3, learn_victim_blaming,
     learn_victim_blaming2, learn_rape_myths
@@ -117,7 +117,7 @@ def setup_handlers(application: Application):
     application.add_handler(CallbackQueryHandler(learn_tips3, pattern="^learn_tips3$"))
     application.add_handler(CallbackQueryHandler(learn_tips4, pattern="^learn_tips4$"))
     application.add_handler(CallbackQueryHandler(learn_sexual_assault, pattern="^learn_sexual_assault$"))
-    application.add_handler(CallbackQueryHandler(learn_sexual_assault, pattern="^learn_sexual_assault2$"))
+    application.add_handler(CallbackQueryHandler(learn_sexual_assault2, pattern="^learn_sexual_assault2$"))
     application.add_handler(CallbackQueryHandler(learn_sexual_grooming, pattern="^learn_sexual_grooming$"))
     application.add_handler(CallbackQueryHandler(learn_sexual_grooming2, pattern="^learn_sexual_grooming2$"))
     application.add_handler(CallbackQueryHandler(learn_sexual_grooming3, pattern="^learn_sexual_grooming3$"))
