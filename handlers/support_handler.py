@@ -82,14 +82,14 @@ async def support_legal_clinic(update: Update, context):
     text = (
         "💼  *Legal Clinics* 💼 \n\n"
 
-        "Sexual Assault Care Centre\n"
-    "SACC's legal clinic offers a one-time 30-minute session where SACC’s volunteer lawyers can provide general legal information on your case and share about the options available to you. They are open to survivors of all genders, and the legal clinic is reserved for clients who do not already have legal representation on the same matter. (English-speaking only)\n\n"
+        "*Sexual Assault Care Centre*\n"
+    "[SACC's](https://sacc.aware.org.sg/get-help/legal-information/) legal clinic offers a one-time 30-minute session where SACC’s volunteer lawyers can provide general legal information on your case and share about the options available to you. They are open to survivors of all genders, and the legal clinic is reserved for clients who do not already have legal representation on the same matter. *(English-speaking only)*\n\n"
     "• Call: 6779 0282\n"
     "• Email: sacc@aware.org.sg\n"
-    "• Book an online appointment: sacc[dot]aware[dot]org[dot]sg/sacc-online-chat-service\n\n"
+    "• Book an [online appointment](https://sacc.aware.org.sg/sacc-online-chat-service/)\n\n"
 
-    "Singapore Council of Women’s Organisations\n"
-    "SHECares@SCWO: Legal volunteers from Pro Bono SG will offer a free 30 minutes legal assistance session at legal clinics. Every 1st and 3rd Wednesday of the Month, 7 pm - 9 pm.\n"
+    "*SHECares@SCWO*\n"
+    "[SHECares](https://she.org.sg/shecares-scwo): Legal volunteers from Pro Bono SG will offer a free 30 minutes legal assistance session at legal clinics. *Every 1st and 3rd Wednesday* of the Month, *7 pm - 9 pm*.\n"
     "• Call: 8001 01 4616\n"
     "• WhatsApp: 6571 4400"
     )

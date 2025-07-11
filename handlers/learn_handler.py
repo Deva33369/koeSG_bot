@@ -113,7 +113,7 @@ async def learn_sa(update: Update, context):
 async def learn_sexual_assault(update: Update, context):
     text = (
         "❕ *Sexual Assault* ❕\n\n"
-        "Sexual assault can include:\n\n"
+        "*Sexual assault can include:*\n\n"
         "🔹 Any penetration *without* consent (e.g. vaginal, oral or anal), using any part of the body (penis, fingers) or object.\n"
         "🔹 Any *unwanted* sexual touching, stroking, kissing, groping, etc.\n"
         "🔹 Unwanted sexual requests, messages or gestures, including electronically, in the workplace or elsewhere.\n"
@@ -124,9 +124,8 @@ async def learn_sexual_assault(update: Update, context):
    
     keyboard = [
         [InlineKeyboardButton("Get Support", callback_data='help')],
-        back_button('learn_sa'),
         [InlineKeyboardButton("Learn More ➡️", callback_data='learn_sexual_assault2')],
-        [InlineKeyboardButton("Main menu 🏠", callback_data='learn')]
+        back_button('learn_sa')
         
         ]
 
@@ -157,7 +156,7 @@ async def learn_sexual_assault2(update: Update, context):
 
 async def learn_sexual_grooming(update: Update, context):
     text = (
-        "🚫 *Sexual Grooming* 🚫\n\n"
+        "❔ *Sexual Grooming* ❔\n\n"
         "Sexual grooming is the process by which a sexual predator cultivates a relationship with a potential victim. Through grooming, the abuser builds trust and an emotional connection to the targeted victim in order to manipulate and abuse them.\n\n"
     )
     keyboard = [
@@ -172,7 +171,7 @@ async def learn_sexual_grooming(update: Update, context):
 
 async def learn_sexual_grooming2(update: Update, context):
     text = (
-        "🚫 *Sexual Grooming* 🚫\n\n"
+        "❔ *Sexual Grooming* ❔\n\n"
         "Sexual grooming can happen to anyone, including adults, but more often towards children as they are more vulnerable.\n"
         "It is the gradual exposure of sexual ideas and thoughts brought into normal conversations.\n"
         "They build trust and an emotional relationship before gradually exposing sexual ideas and thoughts brought into normal conversations, which can also be done online.\n"
@@ -191,7 +190,7 @@ async def learn_sexual_grooming2(update: Update, context):
 
 async def learn_sexual_grooming3(update: Update, context):
     text = (
-        "🚫 *Sexual Grooming* 🚫\n\n"
+        "❔ *Sexual Grooming* ❔\n\n"
         "\"Grooming can also happen in domestic and relationship settings where the abusive partner, over time, introduces abusive acts that you feel coerced into allowing. In these situations, consent is coerced and therefore is not consent.\"\n\n"
         "Read more about [sexual grooming](https://www.instagram.com/p/C5K5s3Qh_vj/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==) or check out [our podcast with Dewy Choo](https://youtu.be/ARb7-qQ10qc?si=8Szp1yQFBVDujj1f)"
     )
@@ -266,7 +265,7 @@ async def learn_consent3(update: Update, context):
 
 async def learn_victim_blaming(update: Update, context):
     text = (
-        "❌ *Victim Blaming* ❌\n\n"
+        "*Victim Blaming* 🗯\n\n"
         "Victim blaming is common among rape or sexual assault cases, where the victim is accused of inviting the perpetration due to either their clothing or behaviour.")
     keyboard = [
         next_button('learn_victim_blaming2'),
@@ -279,7 +278,7 @@ async def learn_victim_blaming(update: Update, context):
 
 async def learn_victim_blaming2(update: Update, context):
     text = (
-        "❌ *Victim Blaming* ❌\n\n"
+        "*Victim Blaming* 🗯\n\n"
         "Blaming the victim makes it more difficult for that person to come forward and report the assault. On a societal level, it means fewer crimes get reported and fewer predators get prosecuted.\n\n"
         "Victim blaming can lead to increased and unnecessary suffering for the victims. They may experience ridicule while at the same time watching their predators avoid punishment instead of getting the justice they deserve.\n\n"
         "This may increase unhelpful emotions like shame and guilt as it delays their healing. It may also add to their toxic self-blame.\n\n"
